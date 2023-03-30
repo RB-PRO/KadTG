@@ -1,24 +1,31 @@
 package KadArbitr_test
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestCouters(t *testing.T) {
-	couters, errorReq := KadArbitr.Couters()
-	if errorReq != nil {
-		t.Error(errorReq)
-	}
-	fmt.Println(couters)
-}
 
-func TestCouters2(t *testing.T) {
-	couters, errorReq := KadArbitr.Couters2()
+	// Создаём ядро
+	core, ErrorCore := KadArbitr.NewCore()
+	if ErrorCore != nil {
+		t.Error(ErrorCore)
+	}
+
+	// Тестрируем парсинг списка судов
+	errorReq := core.ParseCouters()
 	if errorReq != nil {
 		t.Error(errorReq)
 	}
-	fmt.Println(couters)
+	if len(core.Couters) == 0 {
+		t.Error("Не смогу собрать список судов. Найдено судов - нуль.")
+	}
+
+	// Останавливаем ядро
+	ErrorStop := core.Stop()
+	if ErrorStop != nil {
+		t.Error(ErrorStop)
+	}
 }

@@ -1,43 +1,34 @@
-// Этот код получает список всех судов и его значение для запроса
-
 package KadArbitr
 
 import (
-	"fmt"
-
-	"github.com/gocolly/colly/v2"
+	"log"
 )
 
-func Couters() (map[string]string, error) {
-	c := colly.NewCollector()
-	var ErrorURL error
+func (core *CoreReq) ParseCouters() error {
+
+	//var ErrorURL error
 	couters := make(map[string]string)
 
-	// Поиск данных
-	c.OnHTML("select[class='select js-select'] option", func(e *colly.HTMLElement) {
-
-		value, valueExit := e.DOM.Attr("value")
-		if valueExit { // Если существует такой аттрибут
-			if e.DOM.Text() != "" { // Если текст не нулевой
-				couters[e.DOM.Text()] = value
-			}
-		}
-
-		fmt.Println(e.DOM.Text(), value)
-
-	})
-
-	c.OnHTML("body", func(e *colly.HTMLElement) {
-
-		fmt.Println(e.DOM.Text())
-
-	})
-
-	// Делаем запрос
-	ErrorURL = c.Visit(URL)
-	if ErrorURL != nil {
-		return nil, ErrorURL
+	if _, err := core.page.Goto("https://kad.arbitr.ru/"); err != nil {
+		return err
 	}
 
-	return couters, nil
+	entries, err := core.page.QuerySelectorAll("select[name='Courts'] > option[value]")
+	if err != nil {
+		log.Fatalf("could not get entries: %v", err)
+	}
+	for _, entry := range entries {
+		Text, ErrorText := entry.TextContent()
+		if ErrorText == nil {
+			Value, ErrorValue := entry.GetAttribute("value")
+			if ErrorValue == nil {
+				couters[Text] = Value
+			}
+		}
+	}
+
+	// Сохраняем структуру в ядро парсингаы
+	core.Couters = couters
+
+	return nil
 }
