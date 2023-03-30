@@ -1,21 +1,14 @@
 package KadArbitr
 
-import (
-	"log"
-)
-
+// Получить список судов в мапу Couters
 func (core *CoreReq) ParseCouters() error {
 
 	//var ErrorURL error
 	couters := make(map[string]string)
 
-	if _, err := core.page.Goto("https://kad.arbitr.ru/"); err != nil {
-		return err
-	}
-
 	entries, err := core.page.QuerySelectorAll("select[name='Courts'] > option[value]")
 	if err != nil {
-		log.Fatalf("could not get entries: %v", err)
+		return err // could not get entries
 	}
 	for _, entry := range entries {
 		Text, ErrorText := entry.TextContent()

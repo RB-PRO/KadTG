@@ -6,7 +6,9 @@ import (
 
 const URL string = "https://kad.arbitr.ru/ " // Ссылка на сайт Кад Арбитр
 
-// Базовая стуктура запросов
+// #Ядро запросов
+//
+// Базовая стуктура браузера, который используется при парсинге
 type CoreReq struct {
 	pw      *playwright.Playwright
 	browser playwright.Browser
@@ -30,6 +32,10 @@ func NewCore() (*CoreReq, error) {
 
 	page, err := browser.NewPage()
 	if err != nil {
+		return nil, err // could not create page
+	}
+
+	if _, err := page.Goto("https://kad.arbitr.ru/"); err != nil {
 		return nil, err // could not create page
 	}
 
