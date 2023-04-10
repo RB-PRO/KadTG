@@ -35,7 +35,7 @@ func NewCore() (*CoreReq, error) {
 		return nil, err // could not create page
 	}
 
-	if _, err := page.Goto("https://kad.arbitr.ru/"); err != nil {
+	if _, err := page.Goto("https://kad.arbitr.ru/kad"); err != nil {
 		return nil, err // could not create page
 	}
 

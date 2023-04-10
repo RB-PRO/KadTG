@@ -33,6 +33,8 @@ type Side struct {
 func (core *CoreReq) Parse() ([]Data, error) {
 	Datas := make([]Data, 0)
 
+	// ***
+
 	entries, err := core.page.QuerySelectorAll("table[class='b-cases'] > tbody > tr")
 	if err != nil {
 		return nil, err // could not get entries
