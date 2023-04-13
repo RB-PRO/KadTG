@@ -5,7 +5,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
     <!-- Header -->
     <div class="b-container" id="b-container">
-        <table class="b-arbitr-header" id="b-header" cellpadding="0" cellspacing="0">
+        <table class="b-arbitr-header" id="b-header" cellspacing="0" cellpadding="0">
             <tbody><tr>
                 <td class="b-arbitr-header-title">
                     <h1>
@@ -17,7 +17,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </td>
                 <td class="b-arbitr-header-navigation js-arbitr-header-navigation">
                     <div class="b-arbitr-header-navigation-list_wrapper">
-                        <table class="b-arbitr-header-navigation-list" cellpadding="0" cellspacing="0">
+                        <table class="b-arbitr-header-navigation-list" cellspacing="0" cellpadding="0">
                             <tbody><tr>
                                 <td>
                                     <a class="b-arbitr-header-navigation-list-link b-arbitr-header-navigation-list-link--active" href="https://kad.arbitr.ru/">
@@ -101,11 +101,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <i class="lb"></i>
                                 <i class="l"></i>
                             </span>
-                            <textarea value="" placeholder="название, ИНН или ОГРН" class="g-ph" id="" autocomplete="off" style="height: 16px; overflow: hidden; padding-top: 0px; padding-bottom: 0px;"></textarea>
+                            <textarea value="" placeholder="название, ИНН или ОГРН" class="" id="" autocomplete="off" style="height: 16px; overflow: hidden; padding-top: 0px; padding-bottom: 0px;"></textarea>
                             <i class="b-icon add">
                                 <i></i>
                             </i>
-                            <div class="b-type-switcher">
+                            <div class="b-type-switcher" style="display: none;">
                                 <div class="switcher-container">
                                     <div class="b-type-switcher-current">
                                         <div class="top"></div>
@@ -378,13 +378,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </span>
                             </div>
                         </div>
-                        <div class="b-found-total"></div>
+                        <div class="b-found-total" style="display: block;">Найдено 31 дел</div>
                         <a href="#" class="b-reset-link" id="reset-link">Сбросить все</a>
                     </div>
 
-                    <div class="b-totalcases g-ec">
+                    <div class="b-totalcases g-ec" style="position: absolute; padding-left: 18px;">
                         <h3>Дел в картотеке</h3>
-                        <!--a href="https://kad.arbitr.ru/PublishReport?instanceId=f3a1cd2c-38da-4faf-9fd9-392e7a4400f2&amp;caseId=047b5280-2237-4c73-80f2-94c32842ca3a">test</a-->
+                        <!--a href="https://kad.arbitr.ru/PublishReport?instanceId=f90b982b-5d4c-4086-a852-abaab2440379&amp;caseId=315e46ed-f5a2-4f1a-b56f-06502c92697e">test</a-->
                         <i>
                                     
                                         <b class=""><span></span>0</b>
@@ -399,10 +399,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                         <b class=""><span></span>3</b>
                                     
                                     
-                                        <b class=""><span></span>3</b>
+                                        <b class=""><span></span>4</b>
                                     
                                     
-                                        <b class="triade"><span></span>3</b>
+                                        <b class="triade"><span></span>1</b>
                                     
                                     
                                         <b class=""><span></span>6</b>
@@ -429,7 +429,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <i class="b-icon"><i></i></i>
                             Административные
                         </li>
-                        <li class="civil">
+                        <li class="civil active">
                             <i class="b-icon"><i></i></i>
                             Гражданские
                         </li>
@@ -439,15 +439,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </li>
                     </ul>
                     <div class="b-legend-checkbox js-legend-checkbox">
-                        <input class="vksCheckClass js-checkbox" type="checkbox" name="WithVKSInstances" autocomplete="off" value="Показывать судебные поручения" style="position: absolute; z-index: -1; visibility: hidden;"><span class="ui-checkbox-fake"><span class="mark"><img src="/Content/img/t/1x1.gif?v=1"></span></span>
+                        <input class="vksCheckClass js-checkbox" type="checkbox" name="WithVKSInstances" autocomplete="off" value="Показывать судебные поручения" style="position: absolute; z-index: -1; visibility: hidden;"><span class="ui-checkbox-fake" style="user-select: none;"><span class="mark"><img src="/Content/img/t/1x1.gif?v=1"></span></span>
                         <span class="js-legend-checkbox-trigger">Судебные поручения</span>
                     </div>
                 </dt>
 
                 <dd class="b-iblock__body b-container-content b-iblock__body_nopadding" id="main-column2">
-                    <div class="g-fixed-top"></div>
+                    <div class="g-fixed-top" style="left: 601px; top: 30px;"></div>
 
-                    <div class="b-case-blank" style="display: block;">
+                    <div class="b-case-blank" style="display: none;">
                         <div class="b-case-blank__emptyText">
                             Укажите атрибуты дела для поиска
                         </div>
@@ -586,7 +586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                                 <span class="left">
                                                     <i></i>
                                                 </span>
-                                                <input type="text" class="js-input" name="court">
+                                                <input type="text" class="js-input g-ph" name="court">
                                                 <span class="right">
                                                     <i></i>
                                                 </span>
@@ -784,7 +784,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
                     <!-- Results at search -->
-                    <div class="b-results g-hidden">
+                    <div class="b-results">
                         <table class="b-cases tablesorter" id="b-cases-theader">
                             <thead>
                                 <tr>
@@ -813,14 +813,350 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </table>
 
                         <div id="table" class="b-cases_wrapper">
-                            <table id="b-cases" class="b-cases"></table>
+                            <table id="b-cases" class="b-cases"><colgroup><col style="width: 127.383px;"><col style="width: 196px;"><col style="width: 323.4px;"><col style="width: auto;"></colgroup><tbody><tr><td class="num"><div class="b-container"><div class="civil" title="30.03.2023 0:00:00"><i class="b-icon"><i></i></i><span>30.03.2023</span></div><a href="https://kad.arbitr.ru/Card/9fdb85f1-fd50-4ae8-8114-1a74647fa8d3" target="_blank" class="num_case">
+                            А40-68158/2023
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Джиоев В. Г.">Джиоев В. Г.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    АО "НАУЧНО-ПРОМЫШЛЕННАЯ КОМПАНИЯ "ВЫСОКИЕ ТЕХНОЛОГИИ И СТРАТЕГИЧЕСКИЕ СИСТЕМЫ"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>АО "НАУЧНО-ПРОМЫШЛЕННАЯ КОМПАНИЯ "ВЫСОКИЕ ТЕХНОЛОГИИ И СТРАТЕГИЧЕСКИЕ СИСТЕМЫ"</strong><br>
+                                        107023, Россия, Г.Москва, вн.тер.г. МУНИЦИПАЛЬНЫЙ ОКРУГ ПРЕОБРАЖЕНСКОЕ, г. Москва, ул. ЭЛЕКТРОЗАВОДСКАЯ, д. 27 строение 9, комната VII/35
+                                            <div>
+                                                ИНН: 7713211631
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="20.01.2023 0:00:00"><i class="b-icon"><i></i></i><span>20.01.2023</span></div><a href="https://kad.arbitr.ru/Card/7b1125a2-ac77-4358-a54b-4e92f58d8b35" target="_blank" class="num_case">
+                            А40-8486/2023
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Джиоев В. Г.">Джиоев В. Г.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "МП КОМПЛЕКТ"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "МП КОМПЛЕКТ"</strong><br>
+                                        141080, РОССИЯ, МОСКОВСКАЯ ОБЛАСТЬ, Г. КОРОЛЁВ, УЛ. ГОРЬКОГО, Д. 14, КВ. 41
+                                            <div>
+                                                ИНН: 7716804326
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="03.11.2022 0:00:00"><i class="b-icon"><i></i></i><span>03.11.2022</span></div><a href="https://kad.arbitr.ru/Card/dad41cfd-4206-47aa-99fe-5e7f2c3e9873" target="_blank" class="num_case">
+                            А40-241851/2022
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Абрамова Е. А.">Абрамова Е. А.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "ГРИФ-3"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "ГРИФ-3"</strong><br>
+                                        117105, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, ПРОЕЗД 1-Й НАГАТИНСКИЙ, Д. 4
+                                            <div>
+                                                ИНН: 7703142241
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil_simple" title="27.06.2022 0:00:00"><i class="b-icon"><i></i></i><span>27.06.2022</span></div><a href="https://kad.arbitr.ru/Card/3b027f82-1744-45c4-a734-e5106d1c27db" target="_blank" class="num_case">
+                            А40-134956/2022
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Сизова О. В.">Сизова О. В.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "ХАРТИЯ"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "ХАРТИЯ"</strong><br>
+                                        127106, Россия, Г.Москва, вн.тер.г. МУНИЦИПАЛЬНЫЙ ОКРУГ ОТРАДНОЕ, г. Москва, проезд НОВОВЛАДЫКИНСКИЙ, д. 8Б
+                                            <div>
+                                                ИНН: 7703770101
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="11.11.2020 0:00:00"><i class="b-icon"><i></i></i><span>11.11.2020</span></div><a href="https://kad.arbitr.ru/Card/96c34144-21e3-40e2-82fe-fe69187daf00" target="_blank" class="num_case">
+                            А40-219258/2020
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Крикунова В. И.">Крикунова В. И.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ВОЙСКОВАЯ ЧАСТЬ 68240"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ВОЙСКОВАЯ ЧАСТЬ 68240"</strong><br>
+                                        101000, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, А/Я 875, Д, КВ. ГЛАВПОЧТАМТ
+                                            <div>
+                                                ИНН: 7729147283
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="27.11.2019 0:00:00"><i class="b-icon"><i></i></i><span>27.11.2019</span></div><a href="https://kad.arbitr.ru/Card/11ba8207-d00a-4bae-9560-88bee309e3e1" target="_blank" class="num_case">
+                            А07-39096/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Насыров М. М.">Насыров М. М.</div><div title="АС Республики Башкортостан">АС Республики Башкортостан</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    АО "КОМПАНИЯ УФАОЙЛ"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>АО "КОМПАНИЯ УФАОЙЛ"</strong><br>
+                                        450096, РОССИЯ, РЕСПУБЛИКА БАШКОРТОСТАН, Г. УФА, УЛ. ЭНТУЗИАСТОВ, Д. 6
+                                            <div>
+                                                ИНН: 7705989700
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, Россия, г. МОСКВА, г. МОСКВА, ул. НОВОДМИТРОВСКАЯ Б, д. 12 строение 15
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil_simple" title="28.10.2019 0:00:00"><i class="b-icon"><i></i></i><span>28.10.2019</span></div><a href="https://kad.arbitr.ru/Card/9a77a17c-9608-4e28-8f5c-04b0452b08e7" target="_blank" class="num_case">
+                            А40-286423/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Дубовик О. В.">Дубовик О. В.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    АО "ТЕЛЕФОННАЯ КОМПАНИЯ САРОВА"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>АО "ТЕЛЕФОННАЯ КОМПАНИЯ САРОВА"</strong><br>
+                                        607190, РОССИЯ, НИЖЕГОРОДСКАЯ ОБЛАСТЬ, Г. САРОВ, УЛ. КУРЧАТОВА, Д. 3, ОФ. 406
+                                            <div>
+                                                ИНН: 5254021451
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="13.09.2019 0:00:00"><i class="b-icon"><i></i></i><span>13.09.2019</span></div><a href="https://kad.arbitr.ru/Card/b45dbfe4-1831-4c30-ac6f-e0eae423ff4b" target="_blank" class="num_case">
+                            А68-11453/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Чубарова Н. И.">Чубарова Н. И.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, г. Москва, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "Тулагротранс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "Тулагротранс"</strong><br>
+                                        301223, Россия, Тульская область, с. Карамышево, с. Карамышево, ул. Саровская, д. 1 литера А, кв. 1
+                                            <div>
+                                                ИНН: 7118506387
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil_simple" title="30.08.2019 0:00:00"><i class="b-icon"><i></i></i><span>30.08.2019</span></div><a href="https://kad.arbitr.ru/Card/ac7ec52f-a871-41f5-875c-d5df874cb218" target="_blank" class="num_case">
+                            А68-10956/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Воронцов И. Ю.">Воронцов И. Ю.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "ТОГА-Инвест"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "ТОГА-Инвест"</strong><br>
+                                        347900, Россия, Ростовская область, г. Таганрог, ул. Александровская, д. 118-120, кв. 3
+                                                                                                                                                            </span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="05.08.2019 0:00:00"><i class="b-icon"><i></i></i><span>05.08.2019</span></div><a href="https://kad.arbitr.ru/Card/77825b81-f624-401f-b75a-aaedca9f78f4" target="_blank" class="num_case">
+                            А68-9747/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Горькова Е. В.">Горькова Е. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "Агродев"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "Агродев"</strong><br>
+                                        301335, ул. Магистральная, д. 10, дер. Лукино, Щекинский район, Тульская область
+                                                                                                                                                            </span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="10.01.2019 0:00:00"><i class="b-icon"><i></i></i><span>10.01.2019</span></div><a href="https://kad.arbitr.ru/Card/92705c35-b3dc-4111-865b-a0b2f0099e51" target="_blank" class="num_case">
+                            А68-139/2019
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Рыжикова Н. А.">Рыжикова Н. А.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "Экофрукт"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "Экофрукт"</strong><br>
+                                        301539, Россия, Тульская область, Белевский район, дер. Зубково, Центральная, д. 19, офис 3
+                                                                                                                                                            </span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil_simple" title="24.09.2018 0:00:00"><i class="b-icon"><i></i></i><span>24.09.2018</span></div><a href="https://kad.arbitr.ru/Card/d0ccf5d6-1395-4041-9ab5-4193e36642f3" target="_blank" class="num_case">
+                            А40-224585/2018
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Константиновская Н. А.">Константиновская Н. А.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "НОВЫЕ ТОРГОВЫЕ ВОЗМОЖНОСТИ"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "НОВЫЕ ТОРГОВЫЕ ВОЗМОЖНОСТИ"</strong><br>
+                                        109544, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. РАБОЧАЯ, Д. 93 СТРОЕНИЕ 2
+                                            <div>
+                                                ИНН: 7710705897
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="29.05.2018 0:00:00"><i class="b-icon"><i></i></i><span>29.05.2018</span></div><a href="https://kad.arbitr.ru/Card/5d827bec-6589-474f-8fc1-13d2e6513eaf" target="_blank" class="num_case">
+                            А40-118849/2018
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Голоушкина Т. Г.">Голоушкина Т. Г.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    АО ТЕХНОСЕРВЪ А/С
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>АО ТЕХНОСЕРВЪ А/С</strong><br>
+                                        127486, Россия, г. Москва, Коровинское шоссе, д. 10 пом. 201
+                                                                                                                                                            </span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil_simple" title="03.03.2017 0:00:00"><i class="b-icon"><i></i></i><span>03.03.2017</span></div><a href="https://kad.arbitr.ru/Card/dccc5fe6-7d38-4fef-9ac6-219d1c664187" target="_blank" class="num_case">
+                            А68-1925/2017
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Большаков Д. В.">Большаков Д. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "АвтоСтрой"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "АвтоСтрой"</strong><br>
+                                        301246, ул. Лукашина, д. 8Б, оф. 90, г. Щекино, Тульская область
+                                                                                                                                                            </span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="09.02.2017 0:00:00"><i class="b-icon"><i></i></i><span>09.02.2017</span></div><a href="https://kad.arbitr.ru/Card/ce342c9a-3df5-42db-a60f-b2e8ee2c8ea1" target="_blank" class="num_case">
+                            А40-24788/2017
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Романов О. В.">Романов О. В.</div><div title="АС города Москвы">АС города Москвы</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "НОРСИ-ТРАНС"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "ЭНТАЙП"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "ЭНТАЙП"</strong><br>
+                                        119017, Россия, г. МОСКВА, г. МОСКВА, переулок ПЫЖЕВСКИЙ, д. 5 корпус 1
+                                            <div>
+                                                ИНН: 7706744075
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="12.12.2016 0:00:00"><i class="b-icon"><i></i></i><span>12.12.2016</span></div><a href="https://kad.arbitr.ru/Card/446f9652-2508-4281-b36d-562c20897eab" target="_blank" class="num_case">
+                            А68-10790/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Рыжикова Н. А.">Рыжикова Н. А.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    КФХ "Омела"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>КФХ "Омела"</strong><br>
+                                        301226, ул. Саровская, д. 1А, с. Карамышево, Щекинский район, Тульская область
+                                                                                                                                                            </span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="29.11.2016 0:00:00"><i class="b-icon"><i></i></i><span>29.11.2016</span></div><a href="https://kad.arbitr.ru/Card/caedeadb-e428-4062-92d1-be46f684861b" target="_blank" class="num_case">
+                            А68-10298/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Косоухова С. В.">Косоухова С. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Стальинвест"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Стальинвест"</strong><br>
+                                        142000, ул. Промышленная, д. 13, г. Домодедово, Московская область
+                                            <div>
+                                                ИНН: 5009034370
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil_simple" title="10.11.2016 0:00:00"><i class="b-icon"><i></i></i><span>10.11.2016</span></div><a href="https://kad.arbitr.ru/Card/6d384f2b-0c58-4a1b-8cdd-20960c018d07" target="_blank" class="num_case">
+                            А68-9700/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Елисеева Л. В.">Елисеева Л. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    КФХ "Славяне"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>КФХ "Славяне"</strong><br>
+                                        Данные скрыты
+                                                                                                                                                            </span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="10.11.2016 0:00:00"><i class="b-icon"><i></i></i><span>10.11.2016</span></div><a href="https://kad.arbitr.ru/Card/e6c3a282-aa7f-4300-be38-d569315c13fd" target="_blank" class="num_case">
+                            А68-9693/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Лось Г. Г.">Лось Г. Г.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Стальинвест"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Стальинвест"</strong><br>
+                                        142000, ул. Промышленная, д. 13, г. Домодедово, Московская область
+                                            <div>
+                                                ИНН: 5009034370
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil_simple" title="17.10.2016 0:00:00"><i class="b-icon"><i></i></i><span>17.10.2016</span></div><a href="https://kad.arbitr.ru/Card/e0768598-7c8c-4c0c-a705-c19997148b54" target="_blank" class="num_case">
+                            А68-8928/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Елисеева Л. В.">Елисеева Л. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    СПК "Лукино"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>СПК "Лукино"</strong><br>
+                                        301225, ул. Магистральная, д. 10, дер. Лукино, Щекинский район, Тульская область
+                                            <div>
+                                                ИНН: 7118004676
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil_simple" title="20.02.2016 0:00:00"><i class="b-icon"><i></i></i><span>20.02.2016</span></div><a href="https://kad.arbitr.ru/Card/45d44669-5d74-4c04-af87-3c801b6fdf5a" target="_blank" class="num_case">
+                            А68-1306/2016
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Рыжикова Н. А.">Рыжикова Н. А.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "АЗС-242"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "АЗС-242"</strong><br>
+                                        301835, 2-й Магистральный пр-д, д. 2, г. Богородицк, Тульская область
+                                            <div>
+                                                ИНН: 7112500460
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="21.12.2015 0:00:00"><i class="b-icon"><i></i></i><span>21.12.2015</span></div><a href="https://kad.arbitr.ru/Card/8edcbde2-abce-400f-93d8-d5aa2b146925" target="_blank" class="num_case">
+                            А68-11874/2015
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Рыжикова Н. А.">Рыжикова Н. А.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО ПСГ "Техносила"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО ПСГ "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский район, Тульской область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="22.04.2015 0:00:00"><i class="b-icon"><i></i></i><span>22.04.2015</span></div><a href="https://kad.arbitr.ru/Card/23e1b5fb-a3d9-41e7-a649-8878f8a8cfdf" target="_blank" class="num_case">
+                            А68-3752/2015
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Фрик Е. В.">Фрик Е. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО Промышленно-строительная Группа "Техносила"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО Промышленно-строительная Группа "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский р-н, Тульская область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr class="odd"><td class="num"><div class="b-container"><div class="civil" title="17.03.2015 0:00:00"><i class="b-icon"><i></i></i><span>17.03.2015</span></div><a href="https://kad.arbitr.ru/Card/e96224eb-73df-40d2-a8f1-56ece3876490" target="_blank" class="num_case">
+                            А68-2385/2015
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Фрик Е. В.">Фрик Е. В.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО ПСГ "Техносила"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО ПСГ "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский район, Тульской область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td></tr><tr><td class="num"><div class="b-container"><div class="civil" title="01.07.2014 0:00:00"><i class="b-icon"><i></i></i><span>01.07.2014</span></div><a href="https://kad.arbitr.ru/Card/0062bde8-2e97-4255-8b73-455bc89290c7" target="_blank" class="num_case">
+                            А68-6368/2014
+                        </a></div></td><td class="court"><div class="b-container"><div class="judge" title="Воронцов И. Ю.">Воронцов И. Ю.</div><div title="АС Тульской области">АС Тульской области</div></div></td><td class="plaintiff"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ЗАО "Норси-Транс"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: <span class="g-highlight" rel="yellow">7705051215</span>
+                                            </div></span></span></div></div></td><td class="respondent"><div class="b-container"><div><span class="js-rollover b-newRollover">
+                                    ООО "ПромСтройСервис"
+                                    <span class="js-rolloverHtml" style="display: none;"><strong>ООО "ПромСтройСервис"</strong><br>
+                                        300911, ул. Автомобилистов, д. 26, комн. 48, пос. Южный, г. Тула
+                                            <div>
+                                                ИНН: 7107538549
+                                            </div></span></span></div></div></td></tr><input type="hidden" id="documentsPageSize" value="25"><input type="hidden" id="documentsPage" value="1"><input type="hidden" id="documentsTotalCount" value="31"><input type="hidden" id="documentsPagesCount" value="2"></tbody></table>
                         </div>
                     </div>
 
-                    <div class="b-case-loading">
+                    <div class="b-case-loading" style="display: none;">
                         <div class="container">
                             <div class="loading">
-                                <i></i>
+                                <i style="left: -60px;"></i>
                             </div>
                             <div class="descr">Пожалуйста, подождите</div>
                         </div>
@@ -1212,11 +1548,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </a>
 
                     <ul id="pages">
-                        <li class="larr" style="display: none;"><i>←</i> Ctrl</li>
-                        <li class="totalCount">
-                            <span id="totalCount" style="display: none;"></span>
+                        <li class="larr" style=""></li>
+                        <li class="active"><a href="#page1">1</a></li><li><a href="#page2">2</a></li><li class="totalCount">
+                            <span id="totalCount" style="display: none;">31</span>
                         </li>
-                        <li class="rarr" style="display: none;">Ctrl <i>→</i></li>
+                        <li class="rarr" style=""><a href="#page2">Ctrl<i>→</i></a></li>
                     </ul>
                 </div>
             </div>
@@ -1440,7 +1776,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 
-<dl class="b-datePeaker" style="display: none;"><dt><i class="larr_quarter"></i><a href="#" class="larr larr_month"><i></i></a><span class="operatingMonth">Апрель&nbsp;2023</span><a href="#" class="rarr rarr_month"><i></i></a><i class="rarr_quarter"></i></dt><dd><table><thead><tr><th>ПН</th><th>ВТ</th><th>СР</th><th>ЧТ</th><th>ПТ</th><th>СБ</th><th>ВС</th></tr></thead><tbody><tr><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span><a href="#" class="link-day">1</a></span></div></td><td><div><span><a href="#" class="link-day">2</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">3</a></span></div></td><td><div><span><a href="#" class="link-day">4</a></span></div></td><td><div><span><a href="#" class="link-day">5</a></span></div></td><td><div><span><a href="#" class="link-day">6</a></span></div></td><td><div><span><a href="#" class="link-day">7</a></span></div></td><td><div><span><a href="#" class="link-day">8</a></span></div></td><td><div><span><a href="#" class="link-day">9</a></span></div></td></tr><tr><td class="today"><div><span><a href="#" class="link-day">10</a></span></div></td><td><div><span><a href="#" class="link-day">11</a></span></div></td><td><div><span><a href="#" class="link-day">12</a></span></div></td><td><div><span><a href="#" class="link-day">13</a></span></div></td><td><div><span><a href="#" class="link-day">14</a></span></div></td><td><div><span><a href="#" class="link-day">15</a></span></div></td><td><div><span><a href="#" class="link-day">16</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">17</a></span></div></td><td><div><span><a href="#" class="link-day">18</a></span></div></td><td><div><span><a href="#" class="link-day">19</a></span></div></td><td><div><span><a href="#" class="link-day">20</a></span></div></td><td><div><span><a href="#" class="link-day">21</a></span></div></td><td><div><span><a href="#" class="link-day">22</a></span></div></td><td><div><span><a href="#" class="link-day">23</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">24</a></span></div></td><td><div><span><a href="#" class="link-day">25</a></span></div></td><td><div><span><a href="#" class="link-day">26</a></span></div></td><td><div><span><a href="#" class="link-day">27</a></span></div></td><td><div><span><a href="#" class="link-day">28</a></span></div></td><td><div><span><a href="#" class="link-day">29</a></span></div></td><td><div><span><a href="#" class="link-day">30</a></span></div></td></tr></tbody></table></dd></dl><dl class="b-datePeaker" style="display: none;"><dt><i class="larr_quarter"></i><a href="#" class="larr larr_month"><i></i></a><span class="operatingMonth">Апрель&nbsp;2023</span><a href="#" class="rarr rarr_month"><i></i></a><i class="rarr_quarter"></i></dt><dd><table><thead><tr><th>ПН</th><th>ВТ</th><th>СР</th><th>ЧТ</th><th>ПТ</th><th>СБ</th><th>ВС</th></tr></thead><tbody><tr><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span><a href="#" class="link-day">1</a></span></div></td><td><div><span><a href="#" class="link-day">2</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">3</a></span></div></td><td><div><span><a href="#" class="link-day">4</a></span></div></td><td><div><span><a href="#" class="link-day">5</a></span></div></td><td><div><span><a href="#" class="link-day">6</a></span></div></td><td><div><span><a href="#" class="link-day">7</a></span></div></td><td><div><span><a href="#" class="link-day">8</a></span></div></td><td><div><span><a href="#" class="link-day">9</a></span></div></td></tr><tr><td class="today"><div><span><a href="#" class="link-day">10</a></span></div></td><td><div><span><a href="#" class="link-day">11</a></span></div></td><td><div><span><a href="#" class="link-day">12</a></span></div></td><td><div><span><a href="#" class="link-day">13</a></span></div></td><td><div><span><a href="#" class="link-day">14</a></span></div></td><td><div><span><a href="#" class="link-day">15</a></span></div></td><td><div><span><a href="#" class="link-day">16</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">17</a></span></div></td><td><div><span><a href="#" class="link-day">18</a></span></div></td><td><div><span><a href="#" class="link-day">19</a></span></div></td><td><div><span><a href="#" class="link-day">20</a></span></div></td><td><div><span><a href="#" class="link-day">21</a></span></div></td><td><div><span><a href="#" class="link-day">22</a></span></div></td><td><div><span><a href="#" class="link-day">23</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">24</a></span></div></td><td><div><span><a href="#" class="link-day">25</a></span></div></td><td><div><span><a href="#" class="link-day">26</a></span></div></td><td><div><span><a href="#" class="link-day">27</a></span></div></td><td><div><span><a href="#" class="link-day">28</a></span></div></td><td><div><span><a href="#" class="link-day">29</a></span></div></td><td><div><span><a href="#" class="link-day">30</a></span></div></td></tr></tbody></table></dd></dl><div class="b-suggest b-suggest_liquid b-suggest_liquid-no-overflow" style="display: none; position: absolute; z-index: 10000;">
+<dl class="b-datePeaker" style="display: none;"><dt><i class="larr_quarter"></i><a href="#" class="larr larr_month"><i></i></a><span class="operatingMonth">Апрель&nbsp;2023</span><a href="#" class="rarr rarr_month"><i></i></a><i class="rarr_quarter"></i></dt><dd><table><thead><tr><th>ПН</th><th>ВТ</th><th>СР</th><th>ЧТ</th><th>ПТ</th><th>СБ</th><th>ВС</th></tr></thead><tbody><tr><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span><a href="#" class="link-day">1</a></span></div></td><td><div><span><a href="#" class="link-day">2</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">3</a></span></div></td><td><div><span><a href="#" class="link-day">4</a></span></div></td><td><div><span><a href="#" class="link-day">5</a></span></div></td><td><div><span><a href="#" class="link-day">6</a></span></div></td><td><div><span><a href="#" class="link-day">7</a></span></div></td><td><div><span><a href="#" class="link-day">8</a></span></div></td><td><div><span><a href="#" class="link-day">9</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">10</a></span></div></td><td class="today"><div><span><a href="#" class="link-day">11</a></span></div></td><td><div><span><a href="#" class="link-day">12</a></span></div></td><td><div><span><a href="#" class="link-day">13</a></span></div></td><td><div><span><a href="#" class="link-day">14</a></span></div></td><td><div><span><a href="#" class="link-day">15</a></span></div></td><td><div><span><a href="#" class="link-day">16</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">17</a></span></div></td><td><div><span><a href="#" class="link-day">18</a></span></div></td><td><div><span><a href="#" class="link-day">19</a></span></div></td><td><div><span><a href="#" class="link-day">20</a></span></div></td><td><div><span><a href="#" class="link-day">21</a></span></div></td><td><div><span><a href="#" class="link-day">22</a></span></div></td><td><div><span><a href="#" class="link-day">23</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">24</a></span></div></td><td><div><span><a href="#" class="link-day">25</a></span></div></td><td><div><span><a href="#" class="link-day">26</a></span></div></td><td><div><span><a href="#" class="link-day">27</a></span></div></td><td><div><span><a href="#" class="link-day">28</a></span></div></td><td><div><span><a href="#" class="link-day">29</a></span></div></td><td><div><span><a href="#" class="link-day">30</a></span></div></td></tr></tbody></table></dd></dl><dl class="b-datePeaker" style="display: none;"><dt><i class="larr_quarter"></i><a href="#" class="larr larr_month"><i></i></a><span class="operatingMonth">Апрель&nbsp;2023</span><a href="#" class="rarr rarr_month"><i></i></a><i class="rarr_quarter"></i></dt><dd><table><thead><tr><th>ПН</th><th>ВТ</th><th>СР</th><th>ЧТ</th><th>ПТ</th><th>СБ</th><th>ВС</th></tr></thead><tbody><tr><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span></span></div></td><td><div><span><a href="#" class="link-day">1</a></span></div></td><td><div><span><a href="#" class="link-day">2</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">3</a></span></div></td><td><div><span><a href="#" class="link-day">4</a></span></div></td><td><div><span><a href="#" class="link-day">5</a></span></div></td><td><div><span><a href="#" class="link-day">6</a></span></div></td><td><div><span><a href="#" class="link-day">7</a></span></div></td><td><div><span><a href="#" class="link-day">8</a></span></div></td><td><div><span><a href="#" class="link-day">9</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">10</a></span></div></td><td class="today"><div><span><a href="#" class="link-day">11</a></span></div></td><td><div><span><a href="#" class="link-day">12</a></span></div></td><td><div><span><a href="#" class="link-day">13</a></span></div></td><td><div><span><a href="#" class="link-day">14</a></span></div></td><td><div><span><a href="#" class="link-day">15</a></span></div></td><td><div><span><a href="#" class="link-day">16</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">17</a></span></div></td><td><div><span><a href="#" class="link-day">18</a></span></div></td><td><div><span><a href="#" class="link-day">19</a></span></div></td><td><div><span><a href="#" class="link-day">20</a></span></div></td><td><div><span><a href="#" class="link-day">21</a></span></div></td><td><div><span><a href="#" class="link-day">22</a></span></div></td><td><div><span><a href="#" class="link-day">23</a></span></div></td></tr><tr><td><div><span><a href="#" class="link-day">24</a></span></div></td><td><div><span><a href="#" class="link-day">25</a></span></div></td><td><div><span><a href="#" class="link-day">26</a></span></div></td><td><div><span><a href="#" class="link-day">27</a></span></div></td><td><div><span><a href="#" class="link-day">28</a></span></div></td><td><div><span><a href="#" class="link-day">29</a></span></div></td><td><div><span><a href="#" class="link-day">30</a></span></div></td></tr></tbody></table></dd></dl><div class="b-suggest b-suggest_liquid b-suggest_liquid-no-overflow" style="display: none; position: absolute; z-index: 10000;">
         <i class="cn tl"></i>
         <i class="cn tr"></i>
         <div class="body"><ul><li>Верховный Суд РФ</li><li>Высший Арбитражный Суд РФ</li><li>АС Волго-Вятского округа</li><li>АС Восточно-Сибирского округа</li><li>АС Дальневосточного округа</li><li>АС Западно-Сибирского округа</li><li>АС Московского округа</li><li>АС Поволжского округа</li><li>АС Северо-Западного округа</li><li>АС Северо-Кавказского округа</li><li>АС Уральского округа</li><li>АС Центрального округа</li><li>1 арбитражный апелляционный суд</li><li>2 арбитражный апелляционный суд</li><li>3 арбитражный апелляционный суд</li><li>4 арбитражный апелляционный суд</li><li>5 арбитражный апелляционный суд</li><li>6 арбитражный апелляционный суд</li><li>7 арбитражный апелляционный суд</li><li>8 арбитражный апелляционный суд</li><li>9 арбитражный апелляционный суд</li><li>10 арбитражный апелляционный суд</li><li>11 арбитражный апелляционный суд</li><li>12 арбитражный апелляционный суд</li><li>13 арбитражный апелляционный суд</li><li>14 арбитражный апелляционный суд</li><li>15 арбитражный апелляционный суд</li><li>16 арбитражный апелляционный суд</li><li>17 арбитражный апелляционный суд</li><li>18 арбитражный апелляционный суд</li><li>19 арбитражный апелляционный суд</li><li>20 арбитражный апелляционный суд</li><li>21 арбитражный апелляционный суд</li><li>АС Алтайского края</li><li>АС Амурской области</li><li>АС Архангельской области</li><li>АС Астраханской области</li><li>АС Белгородской области</li><li>АС Брянской области</li><li>АС Владимирской области</li><li>АС Волгоградской области</li><li>АС Вологодской области</li><li>АС Воронежской области</li><li>АС города Москвы</li><li>АС города Санкт-Петербурга и Ленинградской области</li><li>АС города Севастополя</li><li>АС Донецкой Народной Республики</li><li>АС Еврейской автономной области</li><li>АС Забайкальского края</li><li>АС Запорожской области</li><li>АС Ивановской области</li><li>АС Иркутской области</li><li>АС Кабардино-Балкарской Республики</li><li>АС Калининградской области</li><li>АС Калужской области</li><li>АС Камчатского края</li><li>АС Карачаево-Черкесской Республики</li><li>АС Кемеровской области</li><li>АС Кировской области</li><li>АС Коми-Пермяцкого АО</li><li>АС Костромской области</li><li>АС Краснодарского края</li><li>АС Красноярского края</li><li>АС Курганской области</li><li>АС Курской области</li><li>АС Липецкой области</li><li>АС Луганской Народной Республики</li><li>АС Магаданской области</li><li>АС Московской области</li><li>АС Мурманской области</li><li>АС Нижегородской области</li><li>АС Новгородской области</li><li>АС Новосибирской области</li><li>АС Омской области</li><li>АС Оренбургской области</li><li>АС Орловской области</li><li>АС Пензенской области</li><li>АС Пермского края</li><li>АС Приморского края</li><li>АС Псковской области</li><li>АС Республики Адыгея</li><li>АС Республики Алтай</li><li>АС Республики Башкортостан</li><li>АС Республики Бурятия</li><li>АС Республики Дагестан</li><li>АС Республики Ингушетия</li><li>АС Республики Калмыкия</li><li>АС Республики Карелия</li><li>АС Республики Коми</li><li>АС Республики Крым</li><li>АС Республики Марий Эл</li><li>АС Республики Мордовия</li><li>АС Республики Саха</li><li>АС Республики Северная Осетия</li><li>АС Республики Татарстан</li><li>АС Республики Тыва</li><li>АС Республики Хакасия</li><li>АС Ростовской области</li><li>АС Рязанской области</li><li>АС Самарской области</li><li>АС Саратовской области</li><li>АС Сахалинской области</li><li>АС Свердловской области</li><li>АС Смоленской области</li><li>АС Ставропольского края</li><li>АС Тамбовской области</li><li>АС Тверской области</li><li>АС Томской области</li><li>АС Тульской области</li><li>АС Тюменской области</li><li>АС Удмуртской Республики</li><li>АС Ульяновской области</li><li>АС Хабаровского края</li><li>АС Ханты-Мансийского АО</li><li>АС Херсонской области</li><li>АС Челябинской области</li><li>АС Чеченской Республики</li><li>АС Чувашской Республики</li><li>АС Чукотского АО</li><li>АС Ямало-Ненецкого АО</li><li>АС Ярославской области</li><li>ПСП Арбитражного суда Пермского края</li><li>ПСП Арбитражный суд Архангельской области</li><li>Суд по интеллектуальным правам</li></ul></div>
@@ -1452,15 +1788,201 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="body"><ul><li> Верховный Суд РФ</li><li> Высший Арбитражный Суд РФ</li><li> АС Волго-Вятского округа</li><li> АС Восточно-Сибирского округа</li><li> АС Дальневосточного округа</li><li> АС Западно-Сибирского округа</li><li> АС Московского округа</li><li> АС Поволжского округа</li><li> АС Северо-Западного округа</li><li> АС Северо-Кавказского округа</li><li> АС Уральского округа</li><li> АС Центрального округа</li><li> 1 арбитражный апелляционный суд</li><li> 10 арбитражный апелляционный суд</li><li> 11 арбитражный апелляционный суд</li><li> 12 арбитражный апелляционный суд</li><li> 13 арбитражный апелляционный суд</li><li> 14 арбитражный апелляционный суд</li><li> 15 арбитражный апелляционный суд</li><li> 16 арбитражный апелляционный суд</li><li> 17 арбитражный апелляционный суд</li><li> 18 арбитражный апелляционный суд</li><li> 19 арбитражный апелляционный суд</li><li> 2 арбитражный апелляционный суд</li><li> 20 арбитражный апелляционный суд</li><li> 21 арбитражный апелляционный суд</li><li> 3 арбитражный апелляционный суд</li><li> 4 арбитражный апелляционный суд</li><li> 5 арбитражный апелляционный суд</li><li> 6 арбитражный апелляционный суд</li><li> 7 арбитражный апелляционный суд</li><li> 8 арбитражный апелляционный суд</li><li> 9 арбитражный апелляционный суд</li><li> АС Алтайского края</li><li> АС Амурской области</li><li> АС Архангельской области</li><li> АС Астраханской области</li><li> АС Белгородской области</li><li> АС Брянской области</li><li> АС Владимирской области</li><li> АС Волгоградской области</li><li> АС Вологодской области</li><li> АС Воронежской области</li><li> АС города Москвы</li><li> АС города Санкт-Петербурга и Ленинградской области</li><li> АС города Севастополя</li><li> АС Донецкой Народной Республики</li><li> АС Еврейской автономной области</li><li> АС Забайкальского края</li><li> АС Запорожской области</li><li> АС Ивановской области</li><li> АС Иркутской области</li><li> АС Кабардино-Балкарской Республики</li><li> АС Калининградской области</li><li> АС Калужской области</li><li> АС Камчатского края</li><li> АС Карачаево-Черкесской Республики</li><li> АС Кемеровской области</li><li> АС Кировской области</li><li> АС Коми-Пермяцкого АО</li><li> АС Костромской области</li><li> АС Краснодарского края</li><li> АС Красноярского края</li><li> АС Курганской области</li><li> АС Курской области</li><li> АС Липецкой области</li><li> АС Луганской Народной Республики</li><li> АС Магаданской области</li><li> АС Московской области</li><li> АС Мурманской области</li><li> АС Нижегородской области</li><li> АС Новгородской области</li><li> АС Новосибирской области</li><li> АС Омской области</li><li> АС Оренбургской области</li><li> АС Орловской области</li><li> АС Пензенской области</li><li> АС Пермского края</li><li> АС Приморского края</li><li> АС Псковской области</li><li> АС Республики Адыгея</li><li> АС Республики Алтай</li><li> АС Республики Башкортостан</li><li> АС Республики Бурятия</li><li> АС Республики Дагестан</li><li> АС Республики Ингушетия</li><li> АС Республики Калмыкия</li><li> АС Республики Карелия</li><li> АС Республики Коми</li><li> АС Республики Крым</li><li> АС Республики Марий Эл</li><li> АС Республики Мордовия</li><li> АС Республики Саха</li><li> АС Республики Северная Осетия</li><li> АС Республики Татарстан</li><li> АС Республики Тыва</li><li> АС Республики Хакасия</li><li> АС Ростовской области</li><li> АС Рязанской области</li><li> АС Самарской области</li><li> АС Саратовской области</li><li> АС Сахалинской области</li><li> АС Свердловской области</li><li> АС Смоленской области</li><li> АС Ставропольского края</li><li> АС Тамбовской области</li><li> АС Тверской области</li><li> АС Томской области</li><li> АС Тульской области</li><li> АС Тюменской области</li><li> АС Удмуртской Республики</li><li> АС Ульяновской области</li><li> АС Хабаровского края</li><li> АС Ханты-Мансийского АО</li><li> АС Херсонской области</li><li> АС Челябинской области</li><li> АС Чеченской Республики</li><li> АС Чувашской Республики</li><li> АС Чукотского АО</li><li> АС Ямало-Ненецкого АО</li><li> АС Ярославской области</li><li> ПСП Арбитражного суда Пермского края</li><li> ПСП Арбитражный суд Архангельской области</li><li> Суд по интеллектуальным правам</li></ul></div>
         <i class="cn bl"></i>
         <i class="cn br"></i>
-    </div><div id="b-combobox-suggest" class="b-suggest b-suggest_liquid"><i class="cn tl"></i><i class="cn tr"></i><div class="body"></div><i class="cn bl"></i><i class="cn br"></i></div><div class="b-modal_wrapper"></div><div class="b-pravocaptcha-modal_wrapper"></div>
+    </div><div id="b-combobox-suggest" class="b-suggest b-suggest_liquid"><i class="cn tl"></i><i class="cn tr"></i><div class="body"></div><i class="cn bl"></i><i class="cn br"></i></div><div class="b-modal_wrapper"></div><div class="b-pravocaptcha-modal_wrapper"></div><div class="form-one-widget__root"><div class="form-one-widget__button-container"><div class="form-one-widget__button"><div class="form-one-widget__button-icon" style="width:36px;height:36px;top:15px;left:15px"><div class="form-one-widget__button-icon-body"></div></div><div class="form-one-widget__button-icon form-one-widget__button-icon--hidden">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="#ffffff" fill-rule="evenodd" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+    </svg>
+  </div></div></div><div class="form-one-widget__widget-gradient form-one-widget--hidden"></div></div><div class="form-one-widget__widget-window form-one-widget__widget-window--hidden form-one-widget__widget-window--hiding"></div>
 <script type="text/javascript" id="">(function(a,e,f,g,b,c,d){a[b]=a[b]||function(){(a[b].a=a[b].a||[]).push(arguments)};a[b].l=1*new Date;c=e.createElement(f);d=e.getElementsByTagName(f)[0];c.async=1;c.src=g;d.parentNode.insertBefore(c,d)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(60994282,"init",{clickmap:!0,trackLinks:!0,accurateTrackBounce:!0});</script>
 <noscript><div><img src="https://mc.yandex.ru/watch/60994282" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 <script type="text/javascript" id="">!function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src="https://vk.com/js/api/openapi.js?167";a.onload=function(){VK.Retargeting.Init("VK-RTRG-465935-elYVA");VK.Retargeting.Hit()};document.head.appendChild(a)}();</script><noscript><img src="https://vk.com/rtrg?p=VK-RTRG-465935-elYVA" style="position:fixed; left:-999px;" alt=""></noscript>
 <script type="text/javascript" id="">var _tmr=window._tmr||(window._tmr=[]);_tmr.push({id:"3210896",type:"pageView",start:(new Date).getTime()});(function(c,e,a){if(!c.getElementById(a)){var b=c.createElement("script");b.type="text/javascript";b.async=!0;b.id=a;b.src="https://top-fwz1.mail.ru/js/code.js";a=function(){var d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)};"[object Opera]"==e.opera?c.addEventListener("DOMContentLoaded",a,!1):a()}})(document,window,"topmailru-code");</script><noscript><div>
 <img src="https://top-fwz1.mail.ru/counter?id=3210896;js=na" style="border:0;position:absolute;left:-9999px;" alt="Top.Mail.Ru">
 </div></noscript>
-<div class="banner_240 text-ad tgb-banner rb-video-widget text-ads pub_300x250 textAds" style="position: absolute !important; top: -9999px !important; left: -9999px !important; width: 1px !important; height: 1px !important;" id="trg-b-banners-1" data-view="SlotView.mimic"></div><div class="form-one-widget__root"><div class="form-one-widget__button-container"><div class="form-one-widget__button"><div class="form-one-widget__button-icon" style="width:36px;height:36px;top:15px;left:15px"><div class="form-one-widget__button-icon-body"></div></div><div class="form-one-widget__button-icon form-one-widget__button-icon--hidden">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-        <path fill="#ffffff" fill-rule="evenodd" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
-    </svg>
-  </div></div></div><div class="form-one-widget__widget-gradient form-one-widget--hidden"></div></div><div class="form-one-widget__widget-window form-one-widget__widget-window--hidden form-one-widget__widget-window--hiding"></div>
+<div class="pub_300x250 b-rb p-target text-banner tgb-banner rb-video-widget textAds" style="position: absolute !important; top: -9999px !important; left: -9999px !important; width: 1px !important; height: 1px !important;" id="trg-b-banners-1" data-view="SlotView.mimic"></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>АО "НАУЧНО-ПРОМЫШЛЕННАЯ КОМПАНИЯ "ВЫСОКИЕ ТЕХНОЛОГИИ И СТРАТЕГИЧЕСКИЕ СИСТЕМЫ"</strong><br>
+                                        107023, Россия, Г.Москва, вн.тер.г. МУНИЦИПАЛЬНЫЙ ОКРУГ ПРЕОБРАЖЕНСКОЕ, г. Москва, ул. ЭЛЕКТРОЗАВОДСКАЯ, д. 27 строение 9, комната VII/35
+                                            <div>
+                                                ИНН: 7713211631
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "МП КОМПЛЕКТ"</strong><br>
+                                        141080, РОССИЯ, МОСКОВСКАЯ ОБЛАСТЬ, Г. КОРОЛЁВ, УЛ. ГОРЬКОГО, Д. 14, КВ. 41
+                                            <div>
+                                                ИНН: 7716804326
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "ГРИФ-3"</strong><br>
+                                        117105, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, ПРОЕЗД 1-Й НАГАТИНСКИЙ, Д. 4
+                                            <div>
+                                                ИНН: 7703142241
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "ХАРТИЯ"</strong><br>
+                                        127106, Россия, Г.Москва, вн.тер.г. МУНИЦИПАЛЬНЫЙ ОКРУГ ОТРАДНОЕ, г. Москва, проезд НОВОВЛАДЫКИНСКИЙ, д. 8Б
+                                            <div>
+                                                ИНН: 7703770101
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ "ВОЙСКОВАЯ ЧАСТЬ 68240"</strong><br>
+                                        101000, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, А/Я 875, Д, КВ. ГЛАВПОЧТАМТ
+                                            <div>
+                                                ИНН: 7729147283
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>АО "КОМПАНИЯ УФАОЙЛ"</strong><br>
+                                        450096, РОССИЯ, РЕСПУБЛИКА БАШКОРТОСТАН, Г. УФА, УЛ. ЭНТУЗИАСТОВ, Д. 6
+                                            <div>
+                                                ИНН: 7705989700
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, Россия, г. МОСКВА, г. МОСКВА, ул. НОВОДМИТРОВСКАЯ Б, д. 12 строение 15
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>АО "ТЕЛЕФОННАЯ КОМПАНИЯ САРОВА"</strong><br>
+                                        607190, РОССИЯ, НИЖЕГОРОДСКАЯ ОБЛАСТЬ, Г. САРОВ, УЛ. КУРЧАТОВА, Д. 3, ОФ. 406
+                                            <div>
+                                                ИНН: 5254021451
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, г. Москва, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "Тулагротранс"</strong><br>
+                                        301223, Россия, Тульская область, с. Карамышево, с. Карамышево, ул. Саровская, д. 1 литера А, кв. 1
+                                            <div>
+                                                ИНН: 7118506387
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "ТОГА-Инвест"</strong><br>
+                                        347900, Россия, Ростовская область, г. Таганрог, ул. Александровская, д. 118-120, кв. 3
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "Агродев"</strong><br>
+                                        301335, ул. Магистральная, д. 10, дер. Лукино, Щекинский район, Тульская область
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, Россия, Московская область, г. Москва, ул. Б.Новодмитровская, д. 12, кв. 15
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "Экофрукт"</strong><br>
+                                        301539, Россия, Тульская область, Белевский район, дер. Зубково, Центральная, д. 19, офис 3
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "НОВЫЕ ТОРГОВЫЕ ВОЗМОЖНОСТИ"</strong><br>
+                                        109544, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. РАБОЧАЯ, Д. 93 СТРОЕНИЕ 2
+                                            <div>
+                                                ИНН: 7710705897
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>АО ТЕХНОСЕРВЪ А/С</strong><br>
+                                        127486, Россия, г. Москва, Коровинское шоссе, д. 10 пом. 201
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "АвтоСтрой"</strong><br>
+                                        301246, ул. Лукашина, д. 8Б, оф. 90, г. Щекино, Тульская область
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "НОРСИ-ТРАНС"</strong><br>
+                                        127015, РОССИЯ, ГОРОД МОСКВА, Г. МОСКВА, УЛ. БОЛЬШАЯ НОВОДМИТРОВСКАЯ, Д. 12 СТРОЕНИЕ 15, КВ. ЭТАЖ 2 КАБ 36
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "ЭНТАЙП"</strong><br>
+                                        119017, Россия, г. МОСКВА, г. МОСКВА, переулок ПЫЖЕВСКИЙ, д. 5 корпус 1
+                                            <div>
+                                                ИНН: 7706744075
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>КФХ "Омела"</strong><br>
+                                        301226, ул. Саровская, д. 1А, с. Карамышево, Щекинский район, Тульская область
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Стальинвест"</strong><br>
+                                        142000, ул. Промышленная, д. 13, г. Домодедово, Московская область
+                                            <div>
+                                                ИНН: 5009034370
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>КФХ "Славяне"</strong><br>
+                                        Данные скрыты
+                                                                                                                                                            </span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Стальинвест"</strong><br>
+                                        142000, ул. Промышленная, д. 13, г. Домодедово, Московская область
+                                            <div>
+                                                ИНН: 5009034370
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>СПК "Лукино"</strong><br>
+                                        301225, ул. Магистральная, д. 10, дер. Лукино, Щекинский район, Тульская область
+                                            <div>
+                                                ИНН: 7118004676
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "АЗС-242"</strong><br>
+                                        301835, 2-й Магистральный пр-д, д. 2, г. Богородицк, Тульская область
+                                            <div>
+                                                ИНН: 7112500460
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО ПСГ "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский район, Тульской область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО Промышленно-строительная Группа "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский р-н, Тульская область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО ПСГ "Техносила"</strong><br>
+                                        301212, ул. Административная, д. 17, пос. Первомайский, Щекинский район, Тульской область
+                                            <div>
+                                                ИНН: 7118011754
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ЗАО "Норси-Транс"</strong><br>
+                                        127015, ул. Б. Новодмитровская, д. 12, стр. 15, г. Москва
+                                            <div>
+                                                ИНН: 7705051215
+                                            </div></span></div><div class="b-rollover__corner"></div></div><div class="b-rollover upCorner" style="display: none;"><div class="b-rollover__i"><span><strong>ООО "ПромСтройСервис"</strong><br>
+                                        300911, ул. Автомобилистов, д. 26, комн. 48, пос. Южный, г. Тула
+                                            <div>
+                                                ИНН: 7107538549
+                                            </div></span></div><div class="b-rollover__corner"></div></div>

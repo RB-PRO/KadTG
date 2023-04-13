@@ -25,7 +25,7 @@ func NewCore() (*CoreReq, error) {
 		return nil, err // could not start playwright
 	}
 
-	browser, err := pw.Chromium.Launch()
+	browser, err := pw.Firefox.Launch()
 	if err != nil {
 		return nil, err // could not launch browser
 	}

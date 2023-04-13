@@ -34,13 +34,11 @@ func TestFill_FilterCases(t *testing.T) {
 		t.Error(ErrorScreen)
 	}
 
-	/*
-		// Выбрать административные дела
-		ErrorClick := core.Fill_FilterCases("civil")
-		if ErrorClick != nil {
-			t.Error(ErrorClick)
-		}
-	*/
+	// Выбрать административные дела
+	ErrorClick := core.Fill_FilterCases("civil")
+	if ErrorClick != nil {
+		t.Error(ErrorClick)
+	}
 
 	ErrorSearch := core.Search()
 	if ErrorSearch != nil {
@@ -57,7 +55,8 @@ func TestFill_FilterCases(t *testing.T) {
 	if ErrorData != nil {
 		t.Error(ErrorData)
 	}
-	fmt.Println(data)
+
+	fmt.Printf("%+v", data)
 
 	// Останавливаем ядро
 	ErrorStop := core.Stop()
