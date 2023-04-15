@@ -46,7 +46,7 @@ func (core *CoreReq) Fill_FilterCases(button string) (ErrorClick error) {
 		return ErrorClick
 	}
 
-	core.page.Fill(`textarea[placeholder="название, ИНН или ОГРН"]`, "7705051215")
+	core.page.Fill(`textarea[placeholder="название, ИНН или ОГРН"]`, "7736050003")
 
 	return nil
 }

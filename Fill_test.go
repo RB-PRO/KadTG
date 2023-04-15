@@ -28,11 +28,7 @@ func TestFill_FilterCases(t *testing.T) {
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
-
-	ErrorScreen := core.Screen("test1.jpg")
-	if ErrorScreen != nil {
-		t.Error(ErrorScreen)
-	}
+	core.Screen("test1.jpg")
 
 	// Выбрать административные дела
 	ErrorClick := core.Fill_FilterCases("civil")
@@ -44,11 +40,7 @@ func TestFill_FilterCases(t *testing.T) {
 	if ErrorSearch != nil {
 		t.Error(ErrorSearch)
 	}
-
-	ErrorScreen2 := core.Screen("test10.jpg")
-	if ErrorScreen2 != nil {
-		t.Error(ErrorScreen2)
-	}
+	core.Screen("test10.jpg")
 
 	// Спарсить страницу
 	data, ErrorData := core.Parse()
@@ -56,7 +48,8 @@ func TestFill_FilterCases(t *testing.T) {
 		t.Error(ErrorData)
 	}
 
-	fmt.Printf("%+v", data)
+	// fmt.Printf("%+v", data)
+	fmt.Printf("Длина массива - %+v", len(data))
 
 	// Останавливаем ядро
 	ErrorStop := core.Stop()

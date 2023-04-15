@@ -1,9 +1,10 @@
 package KadArbitr
 
 import (
-	"fmt"
 	"strings"
 	"time"
+
+	"github.com/playwright-community/playwright-go"
 )
 
 type Data struct {
@@ -21,6 +22,10 @@ type Data struct {
 
 	// 4 Колонка
 	Respondent Side // Ответчик
+
+	// Содержимое дела(Если провалить в UrlNumber)
+	// см. файл ParseOther.go
+	Card Card
 }
 
 // Сторона конфликта
@@ -30,11 +35,8 @@ type Side struct {
 	INN    string // ИНН
 }
 
-// b-cases
 func (core *CoreReq) Parse() ([]Data, error) {
 	Datas := make([]Data, 0)
-
-	// ***
 
 	entries, err := core.page.QuerySelectorAll("table[class='b-cases'] > tbody > tr")
 	if err != nil {
@@ -52,7 +54,7 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		// ************* //
 		// * 1 колонка * //
 		// ************* //
-		// Дата
+		// * Дата *
 		DateSelector, DateError := TD[0].QuerySelector("span")
 		if DateError == nil {
 			DateText, FindDateText := DateSelector.InnerText()
@@ -64,16 +66,16 @@ func (core *CoreReq) Parse() ([]Data, error) {
 			}
 		}
 
-		// Номер дела + ссылка на дело
+		// * Номер дела + ссылка на дело *
 		NumberSelector, NumberError := TD[0].QuerySelector("a")
 		if NumberError == nil {
-			// Номер дела
+			// * Номер дела *
 			NumberText, FindNumberText := NumberSelector.InnerText()
 			if FindNumberText == nil {
 				AppendData.Number = NumberText
 			}
 
-			// Ссылка на дело
+			// * Ссылка на дело *
 			HrefStr, IsHref := NumberSelector.GetAttribute("href")
 			if IsHref == nil {
 				AppendData.UrlNumber = HrefStr
@@ -83,7 +85,7 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		// ************* //
 		// * 2 колонка * //
 		// ************* //
-		// Судья
+		// * Судья *
 		Judge, ErrorJudge := TD[1].QuerySelector("div div.judge")
 		if ErrorJudge == nil {
 			JudgeText, IsJudge := Judge.InnerText()
@@ -92,67 +94,31 @@ func (core *CoreReq) Parse() ([]Data, error) {
 			}
 		}
 
-		// // Инстанция
-		TecalCourt, ErrorCourt := TD[1].QuerySelector("div div:last-of-type")
+		// * Инстанция *
+		Court, ErrorCourt := TD[1].QuerySelector("div div:last-of-type")
 		if ErrorCourt == nil {
-			AppendData.Instance, _ = TecalCourt.InnerText()
+			Instance, ErrorInnerCourt := Court.InnerText()
+			if ErrorInnerCourt != nil {
+				AppendData.Instance = Instance
+			}
 		}
 
 		// ************* //
 		// * 3 колонка * //
 		// ************* //
-		AppendData.Plaintiff = Side{} // Определить Истца
+		// * Истец *
 		Plaintiff, ErrorPlaintiff := TD[2].QuerySelector("span[class=js-rolloverHtml]")
 		if ErrorPlaintiff == nil {
-
-			// Название компании
-			Name, ErrorName := Plaintiff.QuerySelector("strong")
-			if ErrorName == nil {
-				AppendData.Plaintiff.Name, _ = Name.InnerText()
-			}
-
-			// Адрес
-			// AppendData.Plaintiff.Adress, _ = Plaintiff.InnerText()
-
-			// ИНН
-			INN, ErrorINN := Plaintiff.QuerySelector("div")
-			if ErrorINN == nil {
-				AppendData.Plaintiff.INN, _ = INN.InnerText()
-				AppendData.Plaintiff.INN = strings.ReplaceAll(AppendData.Plaintiff.INN, "ИНН:", "")
-				AppendData.Plaintiff.INN = strings.TrimSpace(AppendData.Plaintiff.INN)
-			}
+			AppendData.Plaintiff = plaintiff_2_respondent(Plaintiff)
 		}
 
 		// ************* //
 		// * 4 колонка * //
 		// ************* //
-		AppendData.Respondent = Side{} // Определить Ответчика
+		// * Ответчик *
 		Respondent, ErrorRespondent := TD[3].QuerySelector("span[class=js-rolloverHtml]")
 		if ErrorRespondent == nil {
-
-			// Название компании
-			Name, ErrorName := Respondent.QuerySelector("strong")
-			if ErrorName == nil {
-				if Value, FindError := Name.InnerText(); FindError != nil {
-					AppendData.Respondent.Name = Value
-				}
-			}
-
-			// Адрес
-			// AppendData.Respondent.Adress, _ = Respondent.InnerText()
-
-			// ИНН
-			INN, ErrorINN := Respondent.QuerySelector("div")
-			fmt.Println("ErrorINN", ErrorINN)
-			if ErrorINN == nil {
-				if Value, FindError := INN.InnerText(); FindError != nil {
-					Value = strings.ReplaceAll(Value, "ИНН:", "")
-					Value = strings.TrimSpace(Value)
-					AppendData.Respondent.INN = Value
-				}
-			}
-
-			fmt.Println(Name.InnerText())
+			AppendData.Respondent = plaintiff_2_respondent(Respondent)
 		}
 
 		// Добавляем новую структуру в выходной массив структур
@@ -160,4 +126,35 @@ func (core *CoreReq) Parse() ([]Data, error) {
 	}
 
 	return Datas, nil
+}
+
+// Распарсить структуру для Истца и ответчика
+// Распарсивает клетку в структуру Side, которую и возвращает
+func plaintiff_2_respondent(side playwright.ElementHandle) (OutPutSide Side) {
+	// * Название компании *
+	Name, ErrorName := side.QuerySelector("strong")
+	if ErrorName == nil {
+		Name, ErrorInnerName := Name.InnerText()
+		if ErrorInnerName == nil {
+			OutPutSide.Name = Name
+		}
+	}
+
+	// * Адрес *
+	Adress, ErrorInnerAdress := side.InnerText()
+	if ErrorInnerAdress == nil {
+		OutPutSide.Adress = Adress
+	}
+
+	// * ИНН *
+	INN, _ := side.QuerySelector("div")
+	//fmt.Println("INN", INN)
+	if INN != nil {
+		INN, ErrorInnerINN := INN.InnerText()
+		if ErrorInnerINN == nil {
+			INN = strings.ReplaceAll(INN, "ИНН:", "")
+			OutPutSide.INN = strings.TrimSpace(INN)
+		}
+	}
+	return OutPutSide
 }
