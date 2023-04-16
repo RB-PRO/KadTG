@@ -9,3 +9,5 @@ yandexToken
 config_test.json
 proxy
 output.html
+*.jpg
+screens

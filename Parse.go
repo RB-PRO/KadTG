@@ -148,7 +148,6 @@ func plaintiff_2_respondent(side playwright.ElementHandle) (OutPutSide Side) {
 
 	// * ИНН *
 	INN, _ := side.QuerySelector("div")
-	//fmt.Println("INN", INN)
 	if INN != nil {
 		INN, ErrorInnerINN := INN.InnerText()
 		if ErrorInnerINN == nil {

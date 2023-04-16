@@ -1,7 +1,7 @@
 package KadArbitr
 
 import (
-	"io/ioutil"
+	"time"
 
 	"github.com/playwright-community/playwright-go"
 )
@@ -27,11 +27,6 @@ func (core *CoreReq) FillForm() error {
 	return nil
 }
 
-// Выбрать, какой будет запрос. Варианты:
-//   - administrative active - Административные
-//   - civil - Гражданские
-//   - bankruptcy - Банкротсные
-//   - "" - Пустой
 func (core *CoreReq) Fill_FilterCases(button string) (ErrorClick error) {
 
 	Selector, ErrorClick := core.page.Locator(`li[class=civil]`)
@@ -46,37 +41,64 @@ func (core *CoreReq) Fill_FilterCases(button string) (ErrorClick error) {
 		return ErrorClick
 	}
 
-	core.page.Fill(`textarea[placeholder="название, ИНН или ОГРН"]`, "7736050003")
+	//core.page.Fill(`textarea[placeholder="название, ИНН или ОГРН"]`, "7736050003")
 
 	return nil
 }
 
-func (core *CoreReq) Search() (ErrorClick error) {
+func (core *CoreReq) FillReqestOne(req Request) (ErrorScreen error) {
 
-	core.page.Click("#b-form-submit", playwright.PageClickOptions{
-		Delay:   playwright.Float(1),
-		Timeout: playwright.Float(3),
-		Force:   playwright.Bool(true),
-		Strict:  playwright.Bool(true),
-	})
-	core.page.WaitForSelector(`div[class=b-cases_wrapper]`)
+	// Если не настроена сущесть стороны, то делаем поиск по "любым" сторонам/лицам
+	if req.Part[0].Settings == "" {
+		req.Part[0].Settings = "-1"
+	}
 
-	// save
-	html, _ := core.page.QuerySelector("body")
-	htmlB, _ := html.InnerHTML()
-	err := ioutil.WriteFile("output.html", []byte(htmlB), 0644)
-	if err != nil {
-		panic(err)
+	// Участник дела, название, ИНН или ОГРН
+	if len(req.Part) != 0 {
+		core.page.Fill(`div[id=sug-participants] div[class=tag] textarea[placeholder="название, ИНН или ОГРН"]`,
+			req.Part[0].Value)
+		core.page.SetChecked("div[id=sug-participants] div[class=tag] div#content input[value="+req.Part[0].Settings+"]", true)
+	}
+
+	// // Судья, фамилия судьи + инстанция
+	// // Пока что не работает. Будет долбавлена позже.
+	// core.page.Fill(`div[id=sug-judges] div[class=tag] input[placeholder="фамилия судьи"]`,
+	// 	req.Judg[0].Value+", "+req.Judg[0].Instance)
+	// fmt.Println(">" + req.Judg[0].Value + ", " + req.Judg[0].Instance + "<")
+
+	// Суд, название суда
+	if len(req.Court) != 0 {
+		core.page.Fill(`div[id=caseCourt] div[class=tag] input[placeholder="название суда"]`,
+			req.Court[0])
+	}
+
+	// Номер дела, например, А50-5568/08
+	if len(req.Number) != 0 {
+		core.page.Fill(`div[id=sug-cases] div[class=tag] input[placeholder="например, А50-5568/08"]`,
+			req.Number[0])
+	}
+
+	// Дата регистрации дела С
+	if len(req.Court) != 0 {
+		core.page.Fill(`div[id=sug-dates] label[class=from] input`,
+			timeDateToFromFormat(req.DateFrom))
+	}
+
+	// Дата регистрации дела ПО
+	if len(req.Court) != 0 {
+		core.page.Fill(`div[id=sug-dates] label[class=to] input`,
+			timeDateToFromFormat(req.DateTo))
+	}
+
+	// Судебные поручения
+	if req.LegendCheckbox {
+		core.page.SetChecked("input[name=WithVKSInstances]", true)
 	}
 
 	return nil
 }
 
-// Сделать скриншот браузера
-func (core *CoreReq) Screen(FileName string) (ErrorScreen error) {
-	_, ErrorScreen = core.page.Screenshot(playwright.PageScreenshotOptions{Path: playwright.String(FileName)})
-	if ErrorScreen != nil {
-		return ErrorScreen
-	}
-	return nil
+// Преобразование типа даты от/до
+func timeDateToFromFormat(date time.Time) string {
+	return date.Format("02.01.2006")
 }

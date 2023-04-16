@@ -36,10 +36,10 @@ func TestFill_FilterCases(t *testing.T) {
 		t.Error(ErrorClick)
 	}
 
-	ErrorSearch := core.Search()
-	if ErrorSearch != nil {
-		t.Error(ErrorSearch)
-	}
+	// ErrorSearch := core.Search()
+	// if ErrorSearch != nil {
+	// 	t.Error(ErrorSearch)
+	// }
 	core.Screen("test10.jpg")
 
 	// Спарсить страницу
