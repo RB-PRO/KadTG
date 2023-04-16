@@ -1,5 +1,7 @@
 package KadArbitr
 
+import "fmt"
+
 // Парсинг всех страниц документа с учётом колличества страниц
 // На вход структуру запроса, а на выходе массив полученных данных
 
@@ -31,20 +33,52 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 
 	// Если найдено ноль записей, то и парсить соответственно нечего
 	if pr.Settings.DocumentsTotalCount == 0 {
-		return pr, nil
+		return Parse{}, nil
 	}
 
 	// В случае, если найдена только одна страница
 	// то парсим и выводим результат
 	if pr.Settings.DocumentsPagesCount == 1 {
 		pr.Data, ErrorAll = core.Parse()
-		if ErrorAll != nil {
-			return pr, ErrorAll
-		}
-		return pr, nil
+		return pr, ErrorAll
 	}
 
-	//
+	fmt.Println(1)
+	// Если страниц больше 1
+	if pr.Settings.DocumentsPagesCount > 1 {
+
+		fmt.Println(2)
+		core.Screen("screens/ParseAll31.jpg")
+		// Парсим текущую страницу
+		pr.Data, ErrorAll = core.Parse()
+		if ErrorAll != nil {
+			return Parse{}, ErrorAll
+		}
+		fmt.Println(3)
+
+		// Цикл по всем страницам
+		for pr.Settings.DocumentsPage = 2; pr.Settings.DocumentsPage <= pr.Settings.DocumentsPagesCount; pr.Settings.DocumentsPage++ {
+			fmt.Println(pr.Settings.DocumentsPage)
+
+			// Массив записей на странице
+			var data []Data
+
+			// Следующая страница
+			ErrorNext := core.NextPage()
+			if ErrorNext != nil {
+				return Parse{}, ErrorNext
+			}
+
+			// Парсим страницы
+			data, ErrorAll = core.Parse()
+			if ErrorAll != nil {
+				return Parse{}, ErrorAll
+			}
+
+			// Добавляем в готвоый массив
+			pr.Data = append(pr.Data, data...)
+		}
+	}
 
 	return pr, ErrorAll
 }

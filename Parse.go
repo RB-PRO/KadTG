@@ -1,6 +1,7 @@
 package KadArbitr
 
 import (
+	"fmt"
 	"strings"
 	"time"
 
@@ -55,8 +56,8 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		// * 1 колонка * //
 		// ************* //
 		// * Дата *
-		DateSelector, DateError := TD[0].QuerySelector("span")
-		if DateError == nil {
+		DateSelector, _ := TD[0].QuerySelector("span")
+		if DateSelector != nil {
 			DateText, FindDateText := DateSelector.InnerText()
 			if FindDateText == nil {
 				TimeDate, FindTime := time.Parse("02.01.2006", DateText)
@@ -67,39 +68,51 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		}
 
 		// * Номер дела + ссылка на дело *
-		NumberSelector, NumberError := TD[0].QuerySelector("a")
-		if NumberError == nil {
+		NumberSelector, _ := TD[0].QuerySelector("a")
+		if NumberSelector != nil {
 			// * Номер дела *
 			NumberText, FindNumberText := NumberSelector.InnerText()
 			if FindNumberText == nil {
+				NumberText = strings.TrimSpace(NumberText)
 				AppendData.Number = NumberText
 			}
 
 			// * Ссылка на дело *
 			HrefStr, IsHref := NumberSelector.GetAttribute("href")
 			if IsHref == nil {
+				HrefStr = strings.TrimSpace(HrefStr)
 				AppendData.UrlNumber = HrefStr
 			}
 		}
 
+		fmt.Println(AppendData.Number)
 		// ************* //
 		// * 2 колонка * //
 		// ************* //
 		// * Судья *
-		Judge, ErrorJudge := TD[1].QuerySelector("div div.judge")
-		if ErrorJudge == nil {
-			JudgeText, IsJudge := Judge.InnerText()
-			if IsJudge == nil {
-				AppendData.Judge = JudgeText
+		//if IsVisible, ErrorVisible := TD[1].IsVisible("div div.judge"); IsVisible && ErrorVisible == nil {
+		Judge, _ := TD[1].QuerySelector("div div.judge")
+		if Judge != nil {
+			// Если такой элемент существует
+			if IsVisible, _ := Judge.IsVisible(); IsVisible {
+				// Берём текст из тега
+				JudgeText, IsJudge := Judge.InnerText()
+				if IsJudge == nil {
+					AppendData.Judge = JudgeText
+				}
 			}
 		}
 
 		// * Инстанция *
-		Court, ErrorCourt := TD[1].QuerySelector("div div:last-of-type")
-		if ErrorCourt == nil {
-			Instance, ErrorInnerCourt := Court.InnerText()
-			if ErrorInnerCourt != nil {
-				AppendData.Instance = Instance
+		Court, _ := TD[1].QuerySelector("div div:last-of-type")
+		if Court != nil {
+			// Если такой элемент существует
+			if IsVisible, ErrorVisible := Court.IsVisible(); IsVisible && ErrorVisible == nil {
+				// Берём текст из тега
+				Instance, ErrorInnerCourt := Court.InnerText()
+				if ErrorInnerCourt != nil {
+					AppendData.Instance = Instance
+				}
 			}
 		}
 
@@ -107,8 +120,8 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		// * 3 колонка * //
 		// ************* //
 		// * Истец *
-		Plaintiff, ErrorPlaintiff := TD[2].QuerySelector("span[class=js-rolloverHtml]")
-		if ErrorPlaintiff == nil {
+		Plaintiff, _ := TD[2].QuerySelector("span[class=js-rolloverHtml]")
+		if Plaintiff != nil {
 			AppendData.Plaintiff = plaintiff_2_respondent(Plaintiff)
 		}
 
@@ -116,8 +129,8 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		// * 4 колонка * //
 		// ************* //
 		// * Ответчик *
-		Respondent, ErrorRespondent := TD[3].QuerySelector("span[class=js-rolloverHtml]")
-		if ErrorRespondent == nil {
+		Respondent, _ := TD[3].QuerySelector("span[class=js-rolloverHtml]")
+		if Respondent != nil {
 			AppendData.Respondent = plaintiff_2_respondent(Respondent)
 		}
 
@@ -132,8 +145,8 @@ func (core *CoreReq) Parse() ([]Data, error) {
 // Распарсивает клетку в структуру Side, которую и возвращает
 func plaintiff_2_respondent(side playwright.ElementHandle) (OutPutSide Side) {
 	// * Название компании *
-	Name, ErrorName := side.QuerySelector("strong")
-	if ErrorName == nil {
+	Name, _ := side.QuerySelector("strong")
+	if Name != nil {
 		Name, ErrorInnerName := Name.InnerText()
 		if ErrorInnerName == nil {
 			OutPutSide.Name = Name
