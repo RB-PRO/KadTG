@@ -49,8 +49,10 @@ func (core *CoreReq) Fill_FilterCases(button string) (ErrorClick error) {
 func (core *CoreReq) FillReqestOne(req Request) (ErrorScreen error) {
 
 	// Если не настроена сущесть стороны, то делаем поиск по "любым" сторонам/лицам
-	if req.Part[0].Settings == "" {
-		req.Part[0].Settings = "-1"
+	if len(req.Part) != 0 {
+		if req.Part[0].Settings == "" {
+			req.Part[0].Settings = "-1"
+		}
 	}
 
 	// Участник дела, название, ИНН или ОГРН
