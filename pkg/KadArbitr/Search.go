@@ -2,6 +2,7 @@ package KadArbitr
 
 import (
 	"errors"
+	"fmt"
 
 	"github.com/playwright-community/playwright-go"
 )
@@ -45,6 +46,7 @@ func (core *CoreReq) Search(req Request) (ErrorClick error) {
 		}
 	} else {
 		// Если неправильно задан аргумент запроса
+		fmt.Println(req.SearchCases)
 		return ErrorAnotherSearchMode
 	}
 

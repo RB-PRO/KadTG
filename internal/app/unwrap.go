@@ -17,7 +17,7 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		f := string(str[0])
 
 		// Участник дела
-		if strings.Contains(f, "1. ") {
+		if strings.Contains(f, "1") {
 			str = strings.ReplaceAll(str, "1. ", "")
 			strss := strings.Split(str, ";")
 			req.Part = append(req.Part, KadArbitr.Participant{
@@ -27,7 +27,7 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		}
 
 		// Судья
-		if strings.Contains(f, "2. ") {
+		if strings.Contains(f, "2") {
 			str = strings.ReplaceAll(str, "2. ", "")
 			strss := strings.Split(str, ";")
 			req.Judg = append(req.Judg, KadArbitr.Judgs{
@@ -37,13 +37,13 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		}
 
 		// Номер дела
-		if strings.Contains(f, "3. ") {
+		if strings.Contains(f, "3") {
 			str = strings.ReplaceAll(str, "3. ", "")
 			req.Number = append(req.Number, strings.TrimSpace(str))
 		}
 
 		// Дата регистрации С
-		if strings.Contains(f, "4. ") {
+		if strings.Contains(f, "4") {
 			str = strings.ReplaceAll(str, "4. ", "")
 			req.DateFrom, err = time.Parse("02.01.2006", strings.TrimSpace(str))
 			if err != nil {
@@ -52,7 +52,7 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		}
 
 		// Дата регистрации ДО
-		if strings.Contains(f, "5. ") {
+		if strings.Contains(f, "5") {
 			str = strings.ReplaceAll(str, "5. ", "")
 			req.DateTo, err = time.Parse("02.01.2006", strings.TrimSpace(str))
 			if err != nil {
@@ -61,9 +61,19 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		}
 
 		// Параметр поиска
-		if strings.Contains(f, "6. ") {
+		if strings.Contains(f, "6") {
 			str = strings.ReplaceAll(str, "6. ", "")
 			req.SearchCases = strings.TrimSpace(str)
+			switch strings.TrimSpace(str) {
+			case "a":
+				req.SearchCases = KadArbitr.ModeAdministrative
+			case "c":
+				req.SearchCases = KadArbitr.ModeCivil
+			case "b":
+				req.SearchCases = KadArbitr.ModeBankruptcy
+			default:
+				req.SearchCases = KadArbitr.ModeSearch
+			}
 		}
 	}
 	return req, nil

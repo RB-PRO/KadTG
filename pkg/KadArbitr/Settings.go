@@ -46,19 +46,19 @@ func (core *CoreReq) settingsOne(ID string) (Value int, ErrorFind error) {
 		return 0, ErrorFind
 	}
 
-	// Получаем данные по атрибуту
-	SelectorInnerHTML, ErrorFind := Selector.GetAttribute("value")
-	if ErrorFind != nil {
-		return 0, ErrorFind
-	}
-
-	if SelectorInnerHTML == "" {
-		SelectorInnerHTML = "0"
-	}
-
-	// Переводим string в int
-	if Value, ErrorFind = strconv.Atoi(SelectorInnerHTML); ErrorFind != nil {
-		return 0, ErrorFind
+	if Selector != nil {
+		// Получаем данные по атрибуту
+		SelectorInnerHTML, ErrorFind := Selector.GetAttribute("value")
+		if ErrorFind != nil {
+			return 0, ErrorFind
+		}
+		if SelectorInnerHTML == "" {
+			SelectorInnerHTML = "0"
+		}
+		// Переводим string в int
+		if Value, ErrorFind = strconv.Atoi(SelectorInnerHTML); ErrorFind != nil {
+			return 0, ErrorFind
+		}
 	}
 
 	return Value, nil

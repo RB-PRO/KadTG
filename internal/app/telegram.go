@@ -6,9 +6,11 @@ import (
 
 	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/playwright-community/playwright-go"
 )
 
 func Start() {
+	err := playwright.Install()
 
 	token, ErrorFile := dataFile("token")
 	if ErrorFile != nil {
@@ -44,37 +46,59 @@ func Start() {
 			req, errorunwrap := unwrap(update.Message.Text)
 			if errorunwrap != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, errorunwrap.Error()))
+				continue
 			}
 
 			// Создаём ядро
 			core, ErrorCore := KadArbitr.NewCore()
 			if ErrorCore != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorCore.Error()))
+				continue
 			}
 
 			// Заполнение формы поиска
 			ErrorReq := core.FillReqestOne(req)
 			if ErrorReq != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorReq.Error()))
+				continue
 			}
 
+			// Нажимаем на кнопку поиска
 			ErrorSearch := core.Search(req)
 			if ErrorSearch != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSearch.Error()))
+				continue
 			}
 
+			// Получаем настройки
+			settings, ErrorSettings := core.Settings()
+			if ErrorSettings != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSettings.Error()))
+				continue
+			}
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf(`Я ещё тестовая версия, но уже могу показать жару.
+Дли вашего запроса найдено всего %v записей и я вижу всего %v страниц, на каждой из которых максмум %v записей.
+Начинаю парсинг`, settings.DocumentsTotalCount, settings.DocumentsPagesCount, settings.DocumentsPageSize)))
+
+			// Парсим всё
 			pr, ErrorAll := core.ParseAll()
 			if ErrorAll != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorAll.Error()))
+				continue
 			}
 
 			// Сохраняем и отравляем ему данные
 			filename, ErrorSave := saveXlsx(pr)
 			if ErrorSave != nil {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSave.Error()))
+				continue
 			}
 
-			bot.Send(tgbotapi.NewDocument(update.Message.Chat.ID, tgbotapi.FileBytes{Name: filename}))
+			// отправляем файл
+			file := tgbotapi.FilePath(filename)
+			bot.Send(tgbotapi.NewDocument(update.Message.Chat.ID, file))
+
+			core.Stop()
 
 			fmt.Println(len(pr.Data))
 
@@ -83,7 +107,8 @@ func Start() {
 
 		switch update.Message.Command() {
 		case "example":
-			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, `1. [ИНН или компания]; [сторона( "0" - Истец, "1" - Ответчик,"2" - Третье лицо, "3" - Иное лицо)]
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, `Ввод должен быть примерно такой. Некотоыре записи можно опустить, главное пишите цифру точку и пробел перед интересующим Вас параметром
+1. [ИНН или компания]; [сторона( "0" - Истец, "1" - Ответчик,"2" - Третье лицо, "3" - Иное лицо)]
 2. [судья]; [инстанция]
 3. [номер дела]
 4. [Дата регистрации С]
@@ -97,6 +122,7 @@ func Start() {
 5. 14.04.2023
 6. c`))
 
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, `1. 7714030726; 1`))
 		default:
 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Я не знаю такую команду\nПопробуй /start"))
 			continue
