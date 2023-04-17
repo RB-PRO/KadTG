@@ -1,10 +1,8 @@
-package KadArbitr_test
+package KadArbitr
 
 import (
 	"testing"
 	"time"
-
-	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestNumberTotalPages(t *testing.T) {
@@ -19,7 +17,7 @@ func TestNumberTotalPages(t *testing.T) {
 	}
 
 	for _, e := range tests {
-		answer := KadArbitr.NumberTotalPages(e.in)
+		answer := NumberTotalPages(e.in)
 		if answer != e.out {
 			t.Errorf("Для %v. Результат %v, а должно быть %v.", e.in, answer, e.out)
 		}
@@ -27,7 +25,7 @@ func TestNumberTotalPages(t *testing.T) {
 }
 func TestNextPage(t *testing.T) {
 	// Создаём ядро
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
@@ -55,13 +53,13 @@ func TestNextPage(t *testing.T) {
 
 // Получить тестовый запрос
 // В этом запросе дохуя(боле 4600) записей
-func Req2() KadArbitr.Request {
-	return KadArbitr.Request{
+func Req2() Request {
+	return Request{
 		// Стороны
-		Part: []KadArbitr.Participant{
+		Part: []Participant{
 			{
-				Value:    `7736050003`,             // Истец
-				Settings: KadArbitr.ParticipantAll, // Категория истца
+				Value:    `7736050003`,   // Истец
+				Settings: ParticipantAll, // Категория истца
 			},
 		},
 	}

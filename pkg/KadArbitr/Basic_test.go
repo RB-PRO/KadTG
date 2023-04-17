@@ -1,13 +1,11 @@
-package KadArbitr_test
+package KadArbitr
 
 import (
 	"testing"
-
-	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestNewCore(t *testing.T) {
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}

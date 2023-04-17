@@ -1,11 +1,9 @@
-package KadArbitr_test
+package KadArbitr
 
 import (
 	"fmt"
 	"testing"
 	"time"
-
-	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestFillReqest(t *testing.T) {
@@ -13,7 +11,7 @@ func TestFillReqest(t *testing.T) {
 	// https://kad.arbitr.ru/Card/23fee179-ae11-4036-9139-bae0babcaea7
 
 	// Создаём ядро
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
@@ -40,22 +38,22 @@ func TestFillReqest(t *testing.T) {
 
 // Получить тестовый запрос
 // В этом запросе всего одна запись
-func Req1() KadArbitr.Request {
-	return KadArbitr.Request{
+func Req1() Request {
+	return Request{
 		// Стороны
-		Part: []KadArbitr.Participant{
+		Part: []Participant{
 			{
-				Value:    `ООО М4 Б2Б МАРКЕТПЛЕЙС`,       // Истец
-				Settings: KadArbitr.ParticipantPlaintiff, // Категория истца
+				Value:    `ООО М4 Б2Б МАРКЕТПЛЕЙС`, // Истец
+				Settings: ParticipantPlaintiff,     // Категория истца
 			},
 			{
-				Value:    `Деева Екатерина Николаевна`,    // Истец
-				Settings: KadArbitr.ParticipantRespondent, // Категория ответчика
+				Value:    `Деева Екатерина Николаевна`, // Истец
+				Settings: ParticipantRespondent,        // Категория ответчика
 			},
 		},
 
 		// Судья
-		Judg: []KadArbitr.Judgs{
+		Judg: []Judgs{
 			{
 				Value:    `Снегур А. А.`,
 				Instance: `Суд по интеллектуальным правам`,
@@ -77,6 +75,6 @@ func Req1() KadArbitr.Request {
 		LegendCheckbox: false,
 
 		// Параметры поиска
-		SearchCases: KadArbitr.ModeCivil,
+		SearchCases: ModeCivil,
 	}
 }

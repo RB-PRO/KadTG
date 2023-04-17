@@ -1,15 +1,13 @@
-package KadArbitr_test
+package KadArbitr
 
 import (
 	"fmt"
 	"testing"
-
-	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestParse(t *testing.T) {
 	// Создаём ядро
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}

@@ -1,16 +1,14 @@
-package KadArbitr_test
+package KadArbitr
 
 import (
 	"fmt"
 	"testing"
-
-	"github.com/RB-PRO/KadArbitr"
 )
 
 func TestFillForm(t *testing.T) {
 
 	// Создаём ядро
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
@@ -24,7 +22,7 @@ func TestFillForm(t *testing.T) {
 
 func TestFill_FilterCases(t *testing.T) {
 	// Создаём ядро
-	core, ErrorCore := KadArbitr.NewCore()
+	core, ErrorCore := NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
