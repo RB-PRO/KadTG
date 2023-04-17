@@ -4,7 +4,7 @@ run:
 	go run example/main.go
 
 push:
-	git push git@github.com:RB-PRO/KadArbitr.git
+	git push git@github.com:RB-PRO/KadTG.git
 
 pull:
-	git pull git@github.com:RB-PRO/KadArbitr.git
+	git pull git@github.com:RB-PRO/KadTG.git
