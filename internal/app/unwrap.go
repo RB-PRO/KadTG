@@ -1,10 +1,10 @@
-package tg
+package app
 
 import (
 	"strings"
 	"time"
 
-	"github.com/RB-PRO/KadArbitr"
+	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 )
 
 // Преобразовать входную строку в структуру запроса

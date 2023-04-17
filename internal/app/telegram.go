@@ -1,10 +1,10 @@
-package tg
+package app
 
 import (
 	"fmt"
 	"log"
 
-	"github.com/RB-PRO/KadArbitr"
+	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
@@ -36,10 +36,47 @@ func Start() {
 		// Игнорируем НЕкоманды
 		if !update.Message.IsCommand() {
 			// Проверка наличия текста в сообщении
-			if update.Message.Caption == "" {
+			if update.Message.Text == "" {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Не вижу текста.\nНужно отправить фотографию вместе с текстом."))
 				continue
 			}
+
+			req, errorunwrap := unwrap(update.Message.Text)
+			if errorunwrap != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, errorunwrap.Error()))
+			}
+
+			// Создаём ядро
+			core, ErrorCore := KadArbitr.NewCore()
+			if ErrorCore != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorCore.Error()))
+			}
+
+			// Заполнение формы поиска
+			ErrorReq := core.FillReqestOne(req)
+			if ErrorReq != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorReq.Error()))
+			}
+
+			ErrorSearch := core.Search(req)
+			if ErrorSearch != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSearch.Error()))
+			}
+
+			pr, ErrorAll := core.ParseAll()
+			if ErrorAll != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorAll.Error()))
+			}
+
+			// Сохраняем и отравляем ему данные
+			filename, ErrorSave := saveXlsx(pr)
+			if ErrorSave != nil {
+				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSave.Error()))
+			}
+
+			bot.Send(tgbotapi.NewDocument(update.Message.Chat.ID, tgbotapi.FileBytes{Name: filename}))
+
+			fmt.Println(len(pr.Data))
 
 			continue
 		}
@@ -59,35 +96,6 @@ func Start() {
 4. 14.04.2023
 5. 14.04.2023
 6. c`))
-			req, errorunwrap := unwrap(update.Message.Text())
-			if errorunwrap != nil {
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, errorunwrap.Strings()))
-			}
-
-			// Создаём ядро
-			core, ErrorCore := KadArbitr.NewCore()
-			if ErrorCore != nil {
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorCore.Strings()))
-			}
-
-			// Заполнение формы поиска
-			ErrorReq := core.FillReqestOne(req)
-			if ErrorReq != nil {
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorReq.Strings()))
-			}
-
-			ErrorSearch := core.Search(req)
-			if ErrorSearch != nil {
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSearch.Strings()))
-			}
-
-			pr, ErrorAll := core.ParseAll()
-			if ErrorAll != nil {
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorAll.Strings()))
-			}
-
-			// Сохраняем и отравляем ему данные
-			fmt.Println(len(pr.Data))
 
 		default:
 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Я не знаю такую команду\nПопробуй /start"))
