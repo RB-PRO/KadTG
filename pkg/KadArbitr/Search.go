@@ -30,6 +30,8 @@ var ErrorAnotherSearchMode error = errors.New("Search: Вы выбрали не�
 //   - ModeBankruptcy     string = "bankruptcy"     // Банкротные - Параметры поиска
 //   - ModeSearch         string = ""               // Найти. Обычный поиск. - Параметры поиска
 func (core *CoreReq) Search(req Request) (ErrorClick error) {
+
+	core.CloseNotification()
 	// Переменная req.SearchCases хранит данные о классе, который необходимо кажать,
 	// будь то обычный поиск через "Найти" или поиск в молификации гражданских, банкротств или административных делах.
 	if req.SearchCases == ModeSearch {
@@ -40,7 +42,8 @@ func (core *CoreReq) Search(req Request) (ErrorClick error) {
 		}
 	} else if req.SearchCases == ModeAdministrative || req.SearchCases == ModeCivil || req.SearchCases == ModeBankruptcy {
 		// Если запрос по категории дела "Административные", "Гражданские", "Банкротные"
-		core.page.Click(`li[class=` + req.SearchCases + `]`)
+		// fmt.Println(`li[class=` + req.SearchCases + `]`)
+		ErrorClick = core.page.Click(`li[class=` + req.SearchCases + `]`)
 		if ErrorClick != nil {
 			return ErrorClick
 		}
@@ -52,13 +55,15 @@ func (core *CoreReq) Search(req Request) (ErrorClick error) {
 
 	// Ждём ответа от POST запроса
 	core.page.WaitForResponse("https://kad.arbitr.ru/Kad/SearchInstances", playwright.FrameWaitForURLOptions{
-		Timeout:   playwright.Float(2),           // Таймаут на ожидание
-		WaitUntil: playwright.WaitUntilStateLoad, // Пока не загрузится ответ
+		Timeout: playwright.Float(2), // Таймаут на ожидание
+		// WaitUntil: playwright.WaitUntilStateLoad, // Пока не загрузится ответ
+		// WaitUntil: playwright.WaitUntilStateLoad,
 	})
 
-	// // save
-	// html, _ := core.page.QuerySelector("body")
-	// htmlB, _ := html.InnerHTML()
-	// ioutil.WriteFile("output.html", []byte(htmlB), 0644)
 	return nil
+}
+
+// Закрыть уведомление о недоступности опубликованных аудиозаписей
+func (core *CoreReq) CloseNotification() error {
+	return core.page.Click(`a[class="b-promo_notification-popup-close js-promo_notification-popup-close"]`)
 }

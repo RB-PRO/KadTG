@@ -2,6 +2,7 @@ package KadArbitr
 
 import (
 	"fmt"
+	"io/ioutil"
 	"testing"
 	"time"
 )
@@ -16,10 +17,7 @@ func TestFillReqest(t *testing.T) {
 		t.Error(ErrorCore)
 	}
 
-	fmt.Println(1)
-
 	core.Screen("screens/Req1.jpg")
-	core.Screen("Req1.jpg")
 
 	req := Req1() // Создаём запрос на поиск
 
@@ -29,16 +27,20 @@ func TestFillReqest(t *testing.T) {
 		t.Error(ErrorReq)
 	}
 
-	fmt.Println(1)
-
 	core.Screen("screens/Req2.jpg")
 
+	// save
+	html, _ := core.page.QuerySelector("body")
+	htmlB, _ := html.InnerHTML()
+	ioutil.WriteFile("output.html", []byte(htmlB), 0644)
+
 	core.Search(req)
+	core.Screen("screens/Req3.jpg")
 
 	data, _ := core.Parse()
 	fmt.Println("len", len(data))
 
-	core.Screen("screens/Req3.jpg")
+	core.Screen("screens/Req4.jpg")
 }
 
 // Получить тестовый запрос
