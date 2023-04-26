@@ -70,6 +70,8 @@ func Start() {
 				continue
 			}
 
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Открываю первую страницу Kad.Arbitr"))
+
 			// Получаем настройки
 			settings, ErrorSettings := core.Settings()
 			if ErrorSettings != nil {

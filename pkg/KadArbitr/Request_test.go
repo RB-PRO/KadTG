@@ -16,6 +16,9 @@ func TestFillReqest(t *testing.T) {
 		t.Error(ErrorCore)
 	}
 
+	fmt.Println(1)
+
+	core.Screen("screens/Req1.jpg")
 	core.Screen("Req1.jpg")
 
 	req := Req1() // Создаём запрос на поиск
@@ -26,14 +29,16 @@ func TestFillReqest(t *testing.T) {
 		t.Error(ErrorReq)
 	}
 
-	core.Screen("Req2.jpg")
+	fmt.Println(1)
+
+	core.Screen("screens/Req2.jpg")
 
 	core.Search(req)
 
 	data, _ := core.Parse()
 	fmt.Println("len", len(data))
 
-	core.Screen("Req3.jpg")
+	core.Screen("screens/Req3.jpg")
 }
 
 // Получить тестовый запрос
