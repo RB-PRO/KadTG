@@ -7,7 +7,6 @@ import (
 
 	//"KadArbitr/card"
 
-	"github.com/RB-PRO/KadTG/pkg/KadArbitr/card"
 	"github.com/playwright-community/playwright-go"
 )
 
@@ -29,7 +28,7 @@ type Data struct {
 
 	// Содержимое дела(Если провалить в UrlNumber)
 	// см. файл ParseOther.go
-	Card card.Card
+	Card Card
 }
 
 // Сторона конфликта

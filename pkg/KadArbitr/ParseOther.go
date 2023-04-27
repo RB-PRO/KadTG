@@ -1,21 +1,15 @@
-package card
-
-import "github.com/RB-PRO/KadTG/pkg/KadArbitr"
-
-type Bases struct {
-	*KadArbitr.CoreReq
-}
+package KadArbitr
 
 // Файл для парсинга каждой страницы судебного дела, [например]
 //
 // # Используется структура Card
 //
 // [пример]: https://kad.arbitr.ru/Card/72197155-c243-47d3-b328-2c421391754a
-func (core *Bases) ParseCard(url string) (card Carda, ErrorParse error) {
+func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 
 	// Переходим по ссылке с запроса
 	if _, err := core.page.Goto(url); err != nil {
-		return Carda{}, err // could not create page
+		return Card{}, err // could not create page
 	}
 
 	// Статус дела
