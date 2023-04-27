@@ -5,6 +5,9 @@ import (
 	"strings"
 	"time"
 
+	//"KadArbitr/card"
+
+	"github.com/RB-PRO/KadTG/pkg/KadArbitr/card"
 	"github.com/playwright-community/playwright-go"
 )
 
@@ -26,7 +29,7 @@ type Data struct {
 
 	// Содержимое дела(Если провалить в UrlNumber)
 	// см. файл ParseOther.go
-	Card Card
+	Card card.Card
 }
 
 // Сторона конфликта

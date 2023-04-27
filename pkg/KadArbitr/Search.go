@@ -55,8 +55,8 @@ func (core *CoreReq) Search(req Request) (ErrorClick error) {
 
 	// Ждём ответа от POST запроса
 	core.page.WaitForResponse("https://kad.arbitr.ru/Kad/SearchInstances", playwright.FrameWaitForURLOptions{
-		Timeout: playwright.Float(2), // Таймаут на ожидание
-		// WaitUntil: playwright.WaitUntilStateLoad, // Пока не загрузится ответ
+		Timeout:   playwright.Float(2),           // Таймаут на ожидание
+		WaitUntil: playwright.WaitUntilStateLoad, // Пока не загрузится ответ
 		// WaitUntil: playwright.WaitUntilStateLoad,
 	})
 
