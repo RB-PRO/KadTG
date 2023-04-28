@@ -1,5 +1,11 @@
 package KadArbitr
 
+import (
+	"strings"
+
+	"github.com/playwright-community/playwright-go"
+)
+
 // Файл для парсинга каждой страницы судебного дела, [например]
 //
 // # Используется структура Card
@@ -12,14 +18,26 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 		return Card{}, err // could not create page
 	}
 
+	core.Screen("screens/Card2.jpg")
+	// Ждём загрузку определённой части страницы
+	_, ErrorWait := core.page.WaitForSelector("dd[id=main-column]", playwright.PageWaitForSelectorOptions{Timeout: playwright.Float(20000)})
+	if ErrorWait != nil {
+		return Card{}, ErrorWait
+	}
+
 	// Статус дела
-	SelectorStatus, _ := core.page.QuerySelector("div#b-case-header-desc")
+	SelectorStatus, _ := core.page.QuerySelector(`dt[class^=b-iblock__header]`)
 	if SelectorStatus != nil { // Если найден такой блок
 		// Берём текстовое значение и проверяем его на ошибку
-		if FindText, IsFindError := SelectorStatus.InnerText(); IsFindError != nil {
-			card.Status = FindText
+		if FindText, IsFindError := SelectorStatus.TextContent(); IsFindError == nil {
+			card.Type = strings.TrimSpace(FindText)
 		}
 	}
+
+	// Следующее заседание
+	// b-instanceAdditional
+
+	core.Screen("screens/Card3.jpg")
 
 	// // Сперва пропарсим главные значения карточек
 	// MainsH, err := core.page.QuerySelectorAll(`div[class="b-chrono-item-header js-chrono-item-header page-break"]`)

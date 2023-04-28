@@ -7,6 +7,9 @@ type Card struct {
 	// Сумма исковых требований
 	Coast int
 
+	// Типо судебного дела
+	Type string
+
 	// Рассмотрение дела завершено
 	Status string
 
