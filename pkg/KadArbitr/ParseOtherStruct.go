@@ -30,6 +30,7 @@ type Card struct {
 
 // Главная карточка. То что находится во главе этих карт судов. Похоже на обычную карточку истории за исключением дополнительных полей.
 type HistoryMain struct {
+	// --- Левая колонка ---
 	// Инстанция суда
 	InstanceName string
 
@@ -39,29 +40,24 @@ type HistoryMain struct {
 	// Номер дела
 	Number string
 
-	// Инстанция суда
-	Instance struct {
-		// Отчет по датам публикаций
-		UrlReport string
+	// --- Правая колонка ---
+	// Отчет по датам публикаций
+	UrlReport string
 
-		// Номер инстанции
-		NumberInstance string
+	// Номер инстанции
+	NumberInstance string
 
-		// Суд
-		Cour string
+	// Суд
+	Cour string
 
-		// Ссылка на суд
-		UrlCour string
-	}
+	// Ссылка на суд
+	UrlCour string
 
-	// Приложение. Либо файл, либо название
-	Application struct {
-		// Название файла
-		Name string
+	// Название файла
+	FileName string
 
-		// Ссылка на файл
-		Link string
-	}
+	// Ссылка на файл
+	FileLink string
 }
 
 // Карточки

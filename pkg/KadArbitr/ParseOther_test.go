@@ -11,7 +11,7 @@ import (
 func TestParseCard(t *testing.T) {
 	// Табличные тесты
 	times := make([]time.Time, 3)
-	times[1], _ = time.Parse("02.01.2006, 15:04", "Следующее заседание: 29.06.2023, 16:05 , Зал судебных заседаний № 10063")
+	times[1], _ = time.Parse("02.01.2006 15:04", "29.06.2023 16:05") // "Следующее заседание: 29.06.2023, 16:05 , Зал судебных заседаний № 10063"
 	fmt.Println(times[1])
 	var tests = []struct {
 		url    string
@@ -35,7 +35,7 @@ func TestParseCard(t *testing.T) {
 					Date     time.Time
 					Location string
 				}{
-					Date:     times[0],
+					Date:     times[1],
 					Location: "Зал судебных заседаний № 10063",
 				},
 			},
@@ -52,22 +52,55 @@ func TestParseCard(t *testing.T) {
 
 		// https://kad.arbitr.ru/Card/e219ee0c-4eea-459a-951c-210d7e203975 - Тут есть подпись
 	}
+	// tests[0].Answer.Slips = append(tests[0].Answer.Slips, []struct{Main KadArbitr.HistoryMain; Slave []KadArbitr.HistorySlave})
 
-	fmt.Println(tests)
+	// Выделяем память
+	tests[0].Answer.Slips = make([]struct {
+		Main  KadArbitr.HistoryMain
+		Slave []KadArbitr.HistorySlave
+	}, 2)
+	tests[0].Answer.Slips[0].Main = KadArbitr.HistoryMain{
+		InstanceName: "Апелляционная инстанция",
+		// Date time.Time
+		Number:         "21АП-1781/15 (1)",
+		UrlReport:      "",
+		NumberInstance: "",
+		Cour:           "",
+		UrlCour:        "",
+		FileName:       "",
+		FileLink:       "",
+	}
 
 	// Создаём ядро
 	core, ErrorCore := KadArbitr.NewCore()
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
-	core.Screen("screens/Card1.jpg")
 
-	card, ErrorCard := core.ParseCard("https://kad.arbitr.ru/Card/72197155-c243-47d3-b328-2c421391754a")
-	if ErrorCard != nil {
-		t.Error(ErrorCard)
+	// Цикл по тестовым парам
+	for _, tt := range tests {
+		fmt.Println("Ссылка", tt.url)
+		card, ErrorCard := core.ParseCard(tt.url)
+		if ErrorCard != nil {
+			t.Error(ErrorCard)
+		}
+
+		// Статус дела
+		if tt.Answer.Status != card.Status {
+			t.Errorf(`Status another. Вместо "%v", получено "%v".`, tt.Answer.Status, card.Status)
+		}
+
+		// Тип дела
+		if tt.Answer.Type != card.Type {
+			t.Errorf(`Type another. Вместо "%v", получено "%v".`, tt.Answer.Type, card.Type)
+		}
+
+		// Следующее судебное заседание, локация
+		if tt.Answer.Next.Location != card.Next.Location {
+			t.Errorf(`Next.Location another. Вместо "%v", получено "%v".`, tt.Answer.Next.Location, card.Next.Location)
+		}
+		if tt.Answer.Next.Date != card.Next.Date {
+			t.Errorf(`Next.Date another. Вместо "%v", получено "%v".`, tt.Answer.Next.Date, card.Next.Date)
+		}
 	}
-	core.Screen("screens/Card4.jpg")
-
-	fmt.Printf("%+v", card)
-
 }
