@@ -56,9 +56,10 @@ func TestParseCard(t *testing.T) {
 
 	// --- 1 test ---
 	// https://kad.arbitr.ru/Card/72197155-c243-47d3-b328-2c421391754a
-	tests[0].Answer.Slips = make([]struct { // Выделяем память
-		Main  KadArbitr.HistoryMain
-		Slave []KadArbitr.HistorySlave
+	tests[0].Answer.Slips = make([]struct {
+		DataID string
+		Main   KadArbitr.HistoryMain
+		Slave  []KadArbitr.HistorySlave
 	}, 2)
 	tests[0].Answer.Slips[0].Main = KadArbitr.HistoryMain{
 		InstanceName:   "Апелляционная инстанция",
@@ -85,8 +86,9 @@ func TestParseCard(t *testing.T) {
 	// --- 2 test ---
 	// https://kad.arbitr.ru/Card/7691c97c-01ce-4104-b00d-5125a27a44fc
 	tests[1].Answer.Slips = make([]struct { // Выделяем память
-		Main  KadArbitr.HistoryMain
-		Slave []KadArbitr.HistorySlave
+		DataID string
+		Main   KadArbitr.HistoryMain
+		Slave  []KadArbitr.HistorySlave
 	}, 1)
 	tests[1].Answer.Slips[0].Main = KadArbitr.HistoryMain{
 		InstanceName:   "Первая инстанция",
@@ -99,8 +101,9 @@ func TestParseCard(t *testing.T) {
 	// --- 3 test ---
 	// https://kad.arbitr.ru/Card/b9b800bb-eb4d-4826-87c8-d3259bc822de
 	tests[2].Answer.Slips = make([]struct { // Выделяем память
-		Main  KadArbitr.HistoryMain
-		Slave []KadArbitr.HistorySlave
+		DataID string
+		Main   KadArbitr.HistoryMain
+		Slave  []KadArbitr.HistorySlave
 	}, 1)
 	tests[2].Answer.Slips[0].Main = KadArbitr.HistoryMain{
 		InstanceName:   "Первая инстанция",

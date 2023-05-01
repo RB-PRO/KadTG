@@ -4,6 +4,10 @@ import "time"
 
 // Структура для парсинга содержимого каждого дела.
 type Card struct {
+
+	// ID данного судебного дела. Используется для формирования запросов
+	CaseID string
+
 	// Сумма исковых требований
 	Coast int
 
@@ -20,6 +24,10 @@ type Card struct {
 	}
 
 	Slips []struct {
+
+		// В cURL запросе является полем id. Является ID карточки
+		DataID string
+
 		// Главная карточка
 		Main HistoryMain
 

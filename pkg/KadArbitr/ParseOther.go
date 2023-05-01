@@ -71,8 +71,9 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 	if err == nil && len(MainsH) != 0 { // Если ненулевое к-во элементов
 		// Выделяем память для карточек
 		card.Slips = make([]struct {
-			Main  HistoryMain
-			Slave []HistorySlave
+			DataID string
+			Main   HistoryMain
+			Slave  []HistorySlave
 		}, len(MainsH))
 		for IndexMain, mainH := range MainsH { // Парсим каждую главную карточку
 			// Название инстанции суда
@@ -158,77 +159,79 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 		}
 	}
 
-	// Теперь переходим к парсингу потомков
+	// // Теперь переходим к парсингу потомков
+	// // Отмена. Я нашёл хороший URL для запросов ссылок
 
-	// Нажимаем на все кнопки расширения
-	MainsClick, err := core.page.QuerySelectorAll(`div[title="Нажмите, чтобы ознакомиться с полной хронологией дела."]`)
-	if err == nil && len(MainsClick) != 0 { // Если ненулевое к-во элементов
-		for _, value := range MainsClick {
-			value.Click()
-		}
-	}
+	// // Нажимаем на все кнопки расширения
+	// MainsClick, err := core.page.QuerySelectorAll(`div[title="Нажмите, чтобы ознакомиться с полной хронологией дела."]`)
+	// if err == nil && len(MainsClick) != 0 { // Если ненулевое к-во элементов
+	// 	for _, value := range MainsClick {
+	// 		value.Click()
+	// 	}
+	// }
 
-	time.Sleep(2 * time.Second)
-	core.Screen("screens/Карточки2.jpg")
+	// time.Sleep(2 * time.Second)
+	// core.Screen("screens/Карточки2.jpg")
 
-	MainsSlaves, err := core.page.QuerySelectorAll(`div[class="b-chrono-items-container js-chrono-items-container"] div[class=js-chrono-items-wrapper]`)
-	if err == nil && len(MainsSlaves) != 0 { // Если ненулевое к-во элементов
+	// MainsSlaves, err := core.page.QuerySelectorAll(`div[class="b-chrono-items-container js-chrono-items-container"] div[class=js-chrono-items-wrapper]`)
+	// if err == nil && len(MainsSlaves) != 0 { // Если ненулевое к-во элементов
 
-		// Парсим записи в потомках
-		MainsSlavesElement, ErrElem := core.page.QuerySelectorAll(`div[class^=b-chrono-item]`)
-		if ErrElem == nil && len(MainsSlavesElement) != 0 {
+	// 	// Парсим записи в потомках
+	// 	MainsSlavesElement, ErrElem := core.page.QuerySelectorAll(`div[class^=b-chrono-item]`)
+	// 	if ErrElem == nil && len(MainsSlavesElement) != 0 {
 
-			// Определяем массив потомков, в который и будем парсить
-			// Далее приравняем данные в исходный массив элементов
-			var slaves []HistorySlave
+	// 		// Определяем массив потомков, в который и будем парсить
+	// 		// Далее приравняем данные в исходный массив элементов
+	// 		var slaves []HistorySlave
 
-			for _, Element := range MainsSlavesElement {
-				var slave HistorySlave
+	// 		// Цикл по всем элеметам
+	// 		for _, Element := range MainsSlavesElement {
+	// 			var slave HistorySlave
 
-				// Дата дела
-				if Selector, _ := Element.QuerySelector(`div[class=l-col] p[class=case-date]`); Selector != nil { // Если найден такой блок
-					// Берём текстовое значение и проверяем его на ошибку
-					if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
-						FindText = strings.TrimSpace(FindText)
-						ParseTime, ErrorParse := time.Parse("02.01.2006", FindText)
-						if ErrorParse == nil {
-							slave.Date = ParseTime
-						}
-					}
-				}
+	// 			// Дата дела
+	// 			if Selector, _ := Element.QuerySelector(`div[class=l-col] p[class=case-date]`); Selector != nil { // Если найден такой блок
+	// 				// Берём текстовое значение и проверяем его на ошибку
+	// 				if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
+	// 					FindText = strings.TrimSpace(FindText)
+	// 					ParseTime, ErrorParse := time.Parse("02.01.2006", FindText)
+	// 					if ErrorParse == nil {
+	// 						slave.Date = ParseTime
+	// 					}
+	// 				}
+	// 			}
 
-				// Тип дела
-				if Selector, _ := Element.QuerySelector(`div[class=l-col] p[class=case-date]`); Selector != nil { // Если найден такой блок
-					// Берём текстовое значение и проверяем его на ошибку
-					if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
-						FindText = strings.TrimSpace(FindText)
-						slave.Type = FindText
-					}
-				}
+	// 			// Тип дела
+	// 			if Selector, _ := Element.QuerySelector(`div[class=l-col] p[class=case-date]`); Selector != nil { // Если найден такой блок
+	// 				// Берём текстовое значение и проверяем его на ошибку
+	// 				if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
+	// 					FindText = strings.TrimSpace(FindText)
+	// 					slave.Type = FindText
+	// 				}
+	// 			}
 
-				// Ссылка на публикацию
-				if Selector, _ := Element.QuerySelector(`div[class=r-col] p[class^=b-case-publish_info] a`); Selector != nil { // Если найден такой блок
-					// Берём текстовое значение и проверяем его на ошибку
-					if FindText, EroorFind := Selector.GetAttribute("href"); EroorFind == nil {
-						slave.DatePost.URL = FindText
-					}
-				}
+	// 			// Ссылка на публикацию
+	// 			if Selector, _ := Element.QuerySelector(`div[class=r-col] p[class^=b-case-publish_info] a`); Selector != nil { // Если найден такой блок
+	// 				// Берём текстовое значение и проверяем его на ошибку
+	// 				if FindText, EroorFind := Selector.GetAttribute("href"); EroorFind == nil {
+	// 					slave.DatePost.URL = FindText
+	// 				}
+	// 			}
 
-				// Дата публикации
-				if Selector, _ := Element.QuerySelector(`div[class=r-col] p[class^=b-case-publish_info] a`); Selector != nil { // Если найден такой блок
-					// Берём текстовое значение и проверяем его на ошибку
-					if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
-						FindText = strings.TrimSpace(FindText)
-						slave.Type = FindText
-					}
-				}
+	// 			// Дата публикации
+	// 			if Selector, _ := Element.QuerySelector(`div[class=r-col] p[class^=b-case-publish_info] a`); Selector != nil { // Если найден такой блок
+	// 				// Берём текстовое значение и проверяем его на ошибку
+	// 				if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
+	// 					FindText = strings.TrimSpace(FindText)
+	// 					slave.Type = FindText
+	// 				}
+	// 			}
 
-				slaves = append(slaves, slave) // Добавляем элементы в массив
-			}
+	// 			slaves = append(slaves, slave) // Добавляем элементы в массив
+	// 		}
 
-		}
+	// 	}
 
-	}
+	// }
 
 	// b-chrono-items-container js-chrono-items-container
 
