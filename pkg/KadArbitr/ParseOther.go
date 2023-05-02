@@ -177,7 +177,6 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 	for i := 1; i <= len(MainsClick); i++ {
 		MainsSlaves, err := core.page.QuerySelectorAll(`div[class="b-chrono-items-container js-chrono-items-container"]:nth-child(` + strconv.Itoa(i+1) + `) div[class=js-chrono-items-wrapper]`)
 		if err == nil && len(MainsSlaves) != 0 { // Если ненулевое к-во элементов
-
 			// Парсим записи в потомках
 			MainsSlavesElement, ErrElem := core.page.QuerySelectorAll(`div[class^=b-chrono-item]`)
 			if ErrElem == nil && len(MainsSlavesElement) != 0 {
