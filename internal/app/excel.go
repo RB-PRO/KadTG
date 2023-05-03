@@ -47,6 +47,10 @@ func save(f *excelize.File, data []KadArbitr.Data) {
 	f.SetCellValue(ssheet, "L1", "Ответчик, ИНН")
 	f.SetCellValue(ssheet, "M1", "Ответчик, Адрес")
 
+	f.SetCellValue(ssheet, "O1", "Сумма исковых требований")
+	f.SetCellValue(ssheet, "P1", "Название последнего файла")
+	f.SetCellValue(ssheet, "Q1", "Ссылка на последний файл")
+
 	for index, value := range data {
 		f.SetCellValue(ssheet, "A"+strconv.Itoa(index+2), value.Number)
 		f.SetCellValue(ssheet, "B"+strconv.Itoa(index+2), value.UrlNumber)
@@ -59,5 +63,11 @@ func save(f *excelize.File, data []KadArbitr.Data) {
 		f.SetCellValue(ssheet, "K"+strconv.Itoa(index+2), value.Respondent.Name)
 		f.SetCellValue(ssheet, "L"+strconv.Itoa(index+2), value.Respondent.INN)
 		f.SetCellValue(ssheet, "M"+strconv.Itoa(index+2), value.Respondent.Adress)
+
+		f.SetCellValue(ssheet, "O"+strconv.Itoa(index+2), value.Card.Coast)
+		if len(value.Card.Slips) != 0 {
+			f.SetCellValue(ssheet, "P"+strconv.Itoa(index+2), value.Card.Slips[0].Main.FileName)
+			f.SetCellValue(ssheet, "Q"+strconv.Itoa(index+2), value.Card.Slips[0].Main.FileLink)
+		}
 	}
 }

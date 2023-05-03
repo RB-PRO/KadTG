@@ -1,7 +1,6 @@
 package KadArbitr
 
 import (
-	"fmt"
 	"strings"
 	"time"
 
@@ -87,7 +86,7 @@ func (core *CoreReq) Parse() ([]Data, error) {
 			}
 		}
 
-		fmt.Println(AppendData.Number)
+		// fmt.Println(AppendData.Number)
 		// ************* //
 		// * 2 колонка * //
 		// ************* //

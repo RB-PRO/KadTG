@@ -43,18 +43,14 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 		return pr, ErrorAll
 	}
 
-	fmt.Println(1)
 	// Если страниц больше 1
 	if pr.Settings.DocumentsPagesCount > 1 {
 
-		fmt.Println(2)
-		core.Screen("screens/ParseAll31.jpg")
 		// Парсим текущую страницу
 		pr.Data, ErrorAll = core.Parse()
 		if ErrorAll != nil {
 			return Parse{}, ErrorAll
 		}
-		fmt.Println(3)
 
 		// Цикл по всем страницам
 		for pr.Settings.DocumentsPage = 2; pr.Settings.DocumentsPage <= pr.Settings.DocumentsPagesCount; pr.Settings.DocumentsPage++ {
@@ -66,7 +62,8 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 			// Следующая страница
 			ErrorNext := core.NextPage()
 			if ErrorNext != nil {
-				return Parse{}, ErrorNext
+				fmt.Println("ParseAll:", ErrorNext)
+				//return Parse{}, ErrorNext
 			}
 
 			// Парсим страницы

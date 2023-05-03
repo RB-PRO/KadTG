@@ -45,18 +45,16 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		// Дата регистрации С
 		if strings.Contains(f, "4") {
 			str = strings.ReplaceAll(str, "4. ", "")
-			req.DateFrom, err = time.Parse("02.01.2006", strings.TrimSpace(str))
-			if err != nil {
-				return KadArbitr.Request{}, err
+			if times, err := time.Parse("02.01.2006", strings.TrimSpace(str)); err == nil {
+				req.DateFrom = times
 			}
 		}
 
 		// Дата регистрации ДО
 		if strings.Contains(f, "5") {
 			str = strings.ReplaceAll(str, "5. ", "")
-			req.DateTo, err = time.Parse("02.01.2006", strings.TrimSpace(str))
-			if err != nil {
-				return KadArbitr.Request{}, err
+			if times, err := time.Parse("02.01.2006", strings.TrimSpace(str)); err == nil {
+				req.DateTo = times
 			}
 		}
 
