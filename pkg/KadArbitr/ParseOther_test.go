@@ -3,6 +3,7 @@ package KadArbitr_test
 import (
 	"fmt"
 	"reflect"
+	"strconv"
 	"testing"
 	"time"
 
@@ -13,7 +14,6 @@ func TestParseCard(t *testing.T) {
 	// Табличные тесты
 	times := make([]time.Time, 3)
 	times[1], _ = time.Parse("02.01.2006 15:04", "29.06.2023 16:05") // "Следующее заседание: 29.06.2023, 16:05 , Зал судебных заседаний № 10063"
-	fmt.Println(times[1])
 	var tests = []struct {
 		url    string
 		Answer KadArbitr.Card
@@ -85,7 +85,7 @@ func TestParseCard(t *testing.T) {
 	}
 	tests[0].Answer.Slips[0].Slave = make([]KadArbitr.HistorySlave, 15)
 	tests[0].Answer.Slips[0].Slave[0] = KadArbitr.HistorySlave{
-		Date: time.Date(2016, time.April, 2, 0, 0, 0, 0, time.UTC),
+		Date: time.Date(2016, time.April, 11, 0, 0, 0, 0, time.UTC),
 		Type: "Дополнение к делу",
 		Application: struct {
 			Name                string
@@ -141,8 +141,7 @@ func TestParseCard(t *testing.T) {
 			JudicialComposition: []string{"Cудебный состав № 20"},
 			JudgeSpeaker:        []string{"Чернухин В. А."},
 		},
-		JudgeOrCourt: "Арбитражный суд города Севастополя",
-		Info:         "Дата и время судебного заседания 29.06.2023, 16:05, Зал судебных заседаний № 10063",
+		Info: "Дата и время судебного заседания 29.06.2023, 16:05, Зал судебных заседаний № 10063",
 		DatePost: struct {
 			time.Time
 			URL string
@@ -199,14 +198,17 @@ func TestParseCard(t *testing.T) {
 	if ErrorCore != nil {
 		t.Error(ErrorCore)
 	}
+	core.CloseNotification()
+	core.Screen("screens/Карточки_main.jpg")
 
 	// Цикл по тестовым парам
-	for _, tt := range tests {
+	for index, tt := range tests {
 		fmt.Println("Ссылка:", tt.url)
 		card, ErrorCard := core.ParseCard(tt.url)
 		if ErrorCard != nil {
 			t.Error(ErrorCard)
 		}
+		core.Screen("screens/Карточки_" + strconv.Itoa(index) + ".jpg")
 
 		// Статус дела
 		if tt.Answer.Status != card.Status {
@@ -216,6 +218,11 @@ func TestParseCard(t *testing.T) {
 		// Тип дела
 		if tt.Answer.Type != card.Type {
 			t.Errorf(`Type another. Вместо "%v", получено "%v".`, tt.Answer.Type, card.Type)
+		}
+
+		// Цена исковых требований
+		if tt.Answer.Coast != card.Coast {
+			t.Errorf(`Coast another. Вместо "%v", получено "%v".`, tt.Answer.Coast, card.Coast)
 		}
 
 		// Следующее судебное заседание, локация
@@ -276,52 +283,51 @@ func TestParseCard(t *testing.T) {
 			}
 
 			// --- Проверяем потомков ---
-
 			// Дата
-			if value.Slave[0].Date != card.Slips[0].Slave[0].Date {
-				t.Errorf(`Потомок Slips[index].Slave[0].Date another. Вместо "%v", получено "%v".`, value.Slave[0].Date, card.Slips[0].Slave[0].Date)
+			if value.Slave[0].Date != card.Slips[index].Slave[0].Date {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Date another. Вместо "%v", получено "%v".`, value.Slave[0].Date, card.Slips[index].Slave[0].Date)
 			}
+
 			// Тип дела
-			if value.Slave[0].Type != card.Slips[0].Slave[0].Type {
-				t.Errorf(`Потомок Slips[index].Slave[0].Type another. Вместо "%v", получено "%v".`, value.Slave[0].Type, card.Slips[0].Slave[0].Type)
+			if value.Slave[0].Type != card.Slips[index].Slave[0].Type {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Type another. Вместо "%v", получено "%v".`, value.Slave[0].Type, card.Slips[index].Slave[0].Type)
 			}
 			// Информация о деле
-			if value.Slave[0].Info != card.Slips[0].Slave[0].Info {
-				t.Errorf(`Потомок Slips[index].Slave[0].Info another. Вместо "%v", получено "%v".`, value.Slave[0].Info, card.Slips[0].Slave[0].Info)
+			if value.Slave[0].Info != card.Slips[index].Slave[0].Info {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Info another. Вместо "%v", получено "%v".`, value.Slave[0].Info, card.Slips[index].Slave[0].Info)
 			}
 			// Суд
-			if value.Slave[0].JudgeOrCourt != card.Slips[0].Slave[0].JudgeOrCourt {
-				t.Errorf(`Потомок Slips[index].Slave[0].JudgeOrCourt another. Вместо "%v", получено "%v".`, value.Slave[0].JudgeOrCourt, card.Slips[0].Slave[0].JudgeOrCourt)
+			if value.Slave[0].JudgeOrCourt != card.Slips[index].Slave[0].JudgeOrCourt {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].JudgeOrCourt another. Вместо "%v", получено "%v".`, value.Slave[0].JudgeOrCourt, card.Slips[index].Slave[0].JudgeOrCourt)
 			}
 			// Файл: Ссылка на файл
-			if value.Slave[0].Application.Link != card.Slips[0].Slave[0].Application.Link {
-				t.Errorf(`Потомок Slips[index].Slave[0].Application.Link another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Link, card.Slips[0].Slave[0].Application.Link)
+			if value.Slave[0].Application.Link != card.Slips[index].Slave[0].Application.Link {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Application.Link another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Link, card.Slips[index].Slave[0].Application.Link)
 			}
 			// Файл: Название файла
-			if value.Slave[0].Application.Name != card.Slips[0].Slave[0].Application.Name {
-				t.Errorf(`Потомок Slips[index].Slave[0].Application.Name another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Name, card.Slips[0].Slave[0].Application.Name)
+			if value.Slave[0].Application.Name != card.Slips[index].Slave[0].Application.Name {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Application.Name another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Name, card.Slips[index].Slave[0].Application.Name)
 			}
 			// Файл: Судебный состав
-			if !reflect.DeepEqual(value.Slave[0].Application.JudicialComposition, card.Slips[0].Slave[0].Application.JudicialComposition) {
-				t.Errorf(`Потомок Slips[index].Slave[0].Application.JudicialComposition another. Вместо "%v", получено "%v".`, value.Slave[0].Application.JudicialComposition, card.Slips[0].Slave[0].Application.JudicialComposition)
+			if !reflect.DeepEqual(value.Slave[0].Application.JudicialComposition, card.Slips[index].Slave[0].Application.JudicialComposition) {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Application.JudicialComposition another. Вместо "%v", получено "%v".`, value.Slave[0].Application.JudicialComposition, card.Slips[index].Slave[0].Application.JudicialComposition)
 			}
 			// Файл: Судья - докладчик
-			if !reflect.DeepEqual(value.Slave[0].Application.JudgeSpeaker, card.Slips[0].Slave[0].Application.JudgeSpeaker) {
-				t.Errorf(`Потомок Slips[index].Slave[0].Application.JudgeSpeaker another. Вместо "%v", получено "%v".`, value.Slave[0].Application.JudgeSpeaker, card.Slips[0].Slave[0].Application.JudgeSpeaker)
+			if !reflect.DeepEqual(value.Slave[0].Application.JudgeSpeaker, card.Slips[index].Slave[0].Application.JudgeSpeaker) {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Application.JudgeSpeaker another. Вместо "%v", получено "%v".`, value.Slave[0].Application.JudgeSpeaker, card.Slips[index].Slave[0].Application.JudgeSpeaker)
 			}
 			// Файл: Судья
-			if !reflect.DeepEqual(value.Slave[0].Application.Judges, card.Slips[0].Slave[0].Application.Judges) {
-				t.Errorf(`Потомок Slips[index].Slave[0].Application.Judges another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Judges, card.Slips[0].Slave[0].Application.Judges)
+			if !reflect.DeepEqual(value.Slave[0].Application.Judges, card.Slips[index].Slave[0].Application.Judges) {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].Application.Judges another. Вместо "%v", получено "%v".`, value.Slave[0].Application.Judges, card.Slips[index].Slave[0].Application.Judges)
 			}
 			// Побликация: Ссылка
-			if value.Slave[0].DatePost.URL != card.Slips[0].Slave[0].DatePost.URL {
-				t.Errorf(`Потомок Slips[index].Slave[0].DatePost.URL another. Вместо "%v", получено "%v".`, value.Slave[0].DatePost.URL, card.Slips[0].Slave[0].DatePost.URL)
+			if value.Slave[0].DatePost.URL != card.Slips[index].Slave[0].DatePost.URL {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].DatePost.URL another. Вместо "%v", получено "%v".`, value.Slave[0].DatePost.URL, card.Slips[index].Slave[0].DatePost.URL)
 			}
 			// Побликация: Дата
-			if value.Slave[0].DatePost.Time.GoString() != card.Slips[0].Slave[0].DatePost.Time.GoString() {
-				t.Errorf(`Потомок Slips[index].Slave[0].DatePost.URL another. Вместо "%v", получено "%v".`, value.Slave[0].DatePost.Time.GoString(), card.Slips[0].Slave[0].DatePost.Time.GoString())
+			if value.Slave[0].DatePost.Time != card.Slips[index].Slave[0].DatePost.Time {
+				t.Errorf(`Потомок Slips[`+strconv.Itoa(index)+`].Slave[0].DatePost.URL another. Вместо "%v", получено "%v".`, value.Slave[0].DatePost.Time, card.Slips[index].Slave[0].DatePost.Time)
 			}
-
 		}
 	}
 }

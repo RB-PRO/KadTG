@@ -167,26 +167,37 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 	if err == nil && len(MainsClick) != 0 { // Если ненулевое к-во элементов
 		for _, value := range MainsClick {
 			value.Click()
+
+			// Вообще нужно делать через функции wait, однако на данный момент не совсем разобрался, как
+			// core.page.WaitForSelector(`div[class="b-case-chrono-content"] div[class^="b-chrono-items-container"]:nth-child(` + strconv.Itoa(index+1) + `)`)
+
+			// Сохранить список карточек
+			// html, _ := core.page.QuerySelector(`div[class="b-case-card-content js-case-card-content"]`)
+			// htmlB, _ := html.InnerHTML()
+			// ioutil.WriteFile("output"+strconv.Itoa(index)+".html", []byte(htmlB), 0644)
 		}
 	}
 
-	time.Sleep(1 * time.Second)
-	core.Screen("screens/Карточки2.jpg")
+	// Это костыль, который ждёт, пока все потомки прогрузятся
+	var lens int
+	for lens != len(MainsClick) {
+		time.Sleep(500 * time.Millisecond)
+		quer, _ := core.page.QuerySelectorAll(`div[class="b-case-chrono-content"] div[class^="b-chrono-items-container"]`)
+		lens = len(quer)
+	}
 
-	// Цикл по всем строкам
-	for i := 1; i <= len(MainsClick); i++ {
-		MainsSlaves, err := core.page.QuerySelectorAll(`div[class="b-chrono-items-container js-chrono-items-container"]:nth-child(` + strconv.Itoa(i+1) + `) div[class=js-chrono-items-wrapper]`)
-		if err == nil && len(MainsSlaves) != 0 { // Если ненулевое к-во элементов
+	// // Цикл по всем строкам
+	MainsSlaves, err := core.page.QuerySelectorAll(`div[class="b-chrono-items-container js-chrono-items-container"] div[class=js-chrono-items-wrapper]`)
+	if err == nil && len(MainsSlaves) != 0 { // Если ненулевое к-во элементов
+
+		for i := 0; i < len(MainsSlaves); i++ {
 			// Парсим записи в потомках
-			MainsSlavesElement, ErrElem := core.page.QuerySelectorAll(`div[class^=b-chrono-item]`)
+			MainsSlavesElement, ErrElem := MainsSlaves[i].QuerySelectorAll(`div[class^=b-chrono-item]`)
 			if ErrElem == nil && len(MainsSlavesElement) != 0 {
 
-				// Определяем массив потомков, в который и будем парсить
+				// Определяем массив потомков, в который и будем парсить,
 				// Далее приравняем данные в исходный массив элементов
 				var slaves []HistorySlave
-
-				// Счётчик всех элеменетов
-				var cout int
 
 				// Цикл по всем элеметам
 				for _, Element := range MainsSlavesElement {
@@ -208,7 +219,6 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 						// Берём текстовое значение и проверяем его на ошибку
 						if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
 							FindText = strings.TrimSpace(FindText)
-							fmt.Println(FindText)
 							slave.Type = FindText
 						}
 					}
@@ -237,10 +247,9 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 							FindText = strings.ReplaceAll(FindText, "Дата публикации:", "")
 							FindText = strings.ReplaceAll(FindText, "г. ", "")
 							FindText = strings.TrimSpace(FindText)
-							FindText = FindText[:len(FindText)-4]
+							FindText = FindText[:len(FindText)-6]
 							FindText = strings.TrimSpace(FindText)
-							//slave.DatePost.Time.
-							slave.DatePost.Time, _ = time.Parse("02.01.2006 15:04:00", FindText)
+							slave.DatePost.Time, _ = time.Parse("02.01.2006 15:04:05", FindText)
 						}
 					}
 
@@ -252,9 +261,8 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 							slave.Application.Link = FindText
 						}
 					}
-
-					// Название файлаы
-					if Selector, _ := Element.QuerySelector(`div[class=r-col] h2[class^=b-case-result] a[class^=b-case-result-text] span[class=js-judges-rollover]`); Selector != nil { // Если найден такой блок
+					// Название файла. Если есть файл
+					if Selector, _ := Element.QuerySelector(`div[class=r-col] h2[class^=b-case-result] [class^=b-case-result-text] span[class=js-judges-rollover]`); Selector != nil { // Если найден такой блок
 						// Берём текстовое значение и проверяем его на ошибку
 						if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
 							FindText = strings.TrimSpace(FindText)
@@ -263,16 +271,13 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 					}
 
 					// Суд
+					// Иногда вместо суда пишут несколько фамилий судей. В таком случае игнорируем
 					if Selectors, _ := Element.QuerySelectorAll(`div[class=r-col] p[class^=case-subject] span`); Selectors != nil { // Если найден такой блок
-						// Берём текстовое значение и проверяем его на ошибку
-						// if FindText, IsFindError := Selector.TextContent(); IsFindError == nil {
-						// 	FindText = strings.TrimSpace(FindText)
-						// 	slave.Application.Name = FindText
-						// }
 						if len(Selectors) == 1 { // Если всего у нас один такой селектор
 							if FindText, IsFindError := Selectors[0].TextContent(); IsFindError == nil {
 								FindText = strings.TrimSpace(FindText)
 								if strings.Count(FindText, ".") != 2 { // Если в строке нет двух точек, что говорит нам о том, что это не фамилия
+									// fmt.Println("---", i, ">>>"+FindText+"<<<")
 									slave.JudgeOrCourt = FindText
 								}
 							}
@@ -290,11 +295,9 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 									// Массив, который и будет заполняться данными из параграфа
 									var FindesStrs []string
 
-									//
-									// Selector.
 									// Костыль. Плохо. Так лучше не делать.
 									html, _ := Selector.InnerHTML()
-									html = strings.ReplaceAll(html, "<strong>"+FindText+"<strong>", "")
+									html = strings.ReplaceAll(html, FindText, "") // "<strong>"+FindText+"<strong>", "")
 									strs := strings.Split(html, "<br>")
 									for _, val := range strs {
 										FindesStrs = append(FindesStrs, strings.TrimSpace(val))
@@ -304,13 +307,10 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 									switch FindText {
 									case "Судебный состав:":
 										slave.Application.JudicialComposition = FindesStrs
-										break
 									case "Судья-докладчик:":
 										slave.Application.JudgeSpeaker = FindesStrs
-										break
 									case "Судьи:":
 										slave.Application.Judges = FindesStrs
-										break
 									default:
 										break
 									}
@@ -323,14 +323,29 @@ func (core *CoreReq) ParseCard(url string) (card Card, ErrorParse error) {
 				}
 
 				// Сохраняем данные
-				card.Slips[cout].Slave = slaves
+				card.Slips[i].Slave = slaves
 
+				// fmt.Printf("---%v\n---%+v---\n", i, card.Slips[i].Slave[0])
 			}
-
 		}
 	}
 
-	// b-chrono-items-container js-chrono-items-container
+	// Цикл по всем карточкам и потомкам с целью поиска суммы исковых требований,
+	// Будем триггериться на:
+	//	- Сумма исковых требований
+	for _, ValKart := range card.Slips { // Цикл по группам карточек
+		for _, ValSlave := range ValKart.Slave { // Цикл по потомкам каждой карточки
+			if strings.Contains(ValSlave.Info, "Сумма исковых требований") {
+				strInfo := strings.ReplaceAll(ValSlave.Info, ". ", "")                // Убераем артефакты. Иногда видел подобную историю в карточках info
+				strInfo = strings.ReplaceAll(strInfo, "Сумма исковых требований", "") // Оставляем только цифры
+				strInfo = strings.TrimSpace(strInfo)                                  // Очищаем пробелы
+				if Coast, ErrorAtoi := strconv.Atoi(strInfo); ErrorAtoi == nil {      // Преобразуем полученную строку в цену
+					card.Coast = Coast
+				}
+
+			}
+		}
+	}
 
 	return card, ErrorParse
 }
