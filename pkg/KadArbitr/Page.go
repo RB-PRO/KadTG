@@ -3,6 +3,8 @@ package KadArbitr
 import (
 	"errors"
 	"math"
+
+	"github.com/playwright-community/playwright-go"
 )
 
 // Из общего к-ва записей найти к-во страниц
@@ -43,7 +45,11 @@ func (core *CoreReq) NextPage() (ErrorClick error) {
 	}
 
 	// Нажимаем на кнопку "далее"
-	if ErrorClick = core.page.Click("ul[id=pages] li[class=rarr]"); ErrorClick != nil {
+	if ErrorClick = core.page.Click("ul[id=pages] li[class=rarr]", playwright.PageClickOptions{
+		Force:   playwright.Bool(true),
+		Delay:   playwright.Float(100),
+		Timeout: playwright.Float(5000),
+	}); ErrorClick != nil {
 		return ErrorClick
 	}
 

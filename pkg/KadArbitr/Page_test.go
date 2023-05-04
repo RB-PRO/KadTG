@@ -42,13 +42,14 @@ func TestNextPage(t *testing.T) {
 	if ErrorSearch != nil {
 		t.Error(ErrorSearch)
 	}
+	core.Screen("screens/Next3.jpg")
 
 	ErrorNext := core.NextPage()
 	if ErrorNext != nil {
 		t.Error(ErrorNext)
 	}
 	time.Sleep(2 * time.Second)
-	core.Screen("screens/Next3.jpg")
+	core.Screen("screens/Next4.jpg")
 }
 
 // Получить тестовый запрос

@@ -54,7 +54,7 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 
 		// Цикл по всем страницам
 		for pr.Settings.DocumentsPage = 2; pr.Settings.DocumentsPage <= pr.Settings.DocumentsPagesCount; pr.Settings.DocumentsPage++ {
-			fmt.Println(pr.Settings.DocumentsPage)
+			fmt.Println(pr.Settings.DocumentsPage, "из", pr.Settings.DocumentsPagesCount)
 
 			// Массив записей на странице
 			var data []Data

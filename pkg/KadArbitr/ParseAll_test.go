@@ -3,7 +3,6 @@ package KadArbitr
 import (
 	"fmt"
 	"testing"
-	"time"
 )
 
 func TestParseAll(t *testing.T) {
@@ -31,8 +30,7 @@ func TestParseAll(t *testing.T) {
 	if ErrorAll != nil {
 		t.Error(ErrorAll)
 	}
-	fmt.Println(len(pr.Data))
+	fmt.Println("len(pr.Data)", len(pr.Data))
 
-	time.Sleep(2 * time.Second)
 	core.Screen("screens/ParseAll4.jpg")
 }
