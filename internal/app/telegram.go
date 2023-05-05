@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"strconv"
+	"time"
 
 	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -96,6 +97,7 @@ func Start() {
 				fmt.Println("Парсинг каждой карточки", index+1, "из", len(pr.Data))
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Парсинг каждой карточки "+strconv.Itoa(index+1)+" из "+strconv.Itoa(len(pr.Data))))
 				pr.Data[index].Card, _ = core.ParseCard(pr.Data[index].UrlNumber)
+				time.Sleep(time.Second)
 			}
 
 			// Сохраняем и отравляем ему данные
