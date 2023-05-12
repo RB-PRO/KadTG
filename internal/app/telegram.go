@@ -3,6 +3,7 @@ package app
 import (
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -105,6 +106,13 @@ func Start() {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSave.Error()))
 				continue
 			}
+
+			// Массив ссылок
+			var links string
+			for ind, val := range pr.Data {
+				links += strconv.Itoa(ind) + ". " + val.UrlNumber + "\n"
+			}
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Ссылки:\n"+links))
 
 			// отправляем файл
 			file := tgbotapi.FilePath(filename)
