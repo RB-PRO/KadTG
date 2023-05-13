@@ -109,9 +109,20 @@ func Start() {
 
 			// Массив ссылок
 			var links string
+			// var MessageTG tgbotapi.Message
 			for ind, val := range pr.Data {
 				links += strconv.Itoa(ind) + ". " + val.UrlNumber + "\n"
+				// mess := tgbotapi.messa
+
+				// MessageTG.Entities = append(MessageTG.Entities, tgbotapi.MessageEntity{
+				// 	Type: "text_link",
+				// 	URL:  val.UrlNumber,
+				// })
 			}
+
+			// mess := tgbotapi.NewMessage(update.Message.Chat.ID, "Ссылки на дела:\n")
+			// mess.
+
 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Ссылки:\n"+links))
 
 			// отправляем файл
