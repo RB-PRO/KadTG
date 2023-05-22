@@ -81,13 +81,13 @@ func (core *CoreReq) FillReqestOne(req Request) (ErrorScreen error) {
 	}
 
 	// Дата регистрации дела С
-	if len(req.Court) != 0 {
+	if !req.DateFrom.IsZero() {
 		core.page.Fill(`div[id=sug-dates] label[class=from] input`,
 			timeDateToFromFormat(req.DateFrom))
 	}
 
 	// Дата регистрации дела ПО
-	if len(req.Court) != 0 {
+	if !req.DateTo.IsZero() {
 		core.page.Fill(`div[id=sug-dates] label[class=to] input`,
 			timeDateToFromFormat(req.DateTo))
 	}

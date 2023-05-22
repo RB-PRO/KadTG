@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"strconv"
-	"time"
 
 	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -12,7 +11,7 @@ import (
 )
 
 func Start() {
-	err := playwright.Install()
+	playwright.Install()
 
 	token, ErrorFile := dataFile("token")
 	if ErrorFile != nil {
@@ -50,6 +49,8 @@ func Start() {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, errorunwrap.Error()))
 				continue
 			}
+			fmt.Printf("Запрос: %+v\n", req)
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Получил Ваш запрос.")) //fmt.Sprintf("Запрос: %+v\n", req)
 
 			// Создаём ядро
 			core, ErrorCore := KadArbitr.NewCore()
@@ -65,6 +66,7 @@ func Start() {
 				continue
 			}
 
+			fmt.Printf("Нажимаем на кнопку поиска\n")
 			// Нажимаем на кнопку поиска
 			ErrorSearch := core.Search(req)
 			if ErrorSearch != nil {
@@ -80,9 +82,15 @@ func Start() {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSettings.Error()))
 				continue
 			}
-			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf(`Я ещё тестовая версия, но уже могу показать жару.
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf(`Я ещё тестовая версия, но уже могу что-то показать.
 Дли вашего запроса найдено всего %v записей и я вижу всего %v страниц, на каждой из которых максмум %v записей.
 Начинаю парсинг`, settings.DocumentsTotalCount, settings.DocumentsPagesCount, settings.DocumentsPageSize)))
+			if core.Screen("screen.jpg") == nil {
+				photo := tgbotapi.NewPhoto(update.Message.From.ID, tgbotapi.FilePath("screen.jpg"))
+				if _, err = bot.Send(photo); err != nil {
+					log.Fatalln(err)
+				}
+			}
 
 			// Парсим всё
 			pr, ErrorAll := core.ParseAll()
@@ -90,15 +98,14 @@ func Start() {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorAll.Error()))
 				continue
 			}
-			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf(`Всего найдено записей %v.
-Запускаю парсинг по всем карточкам. Это будет несколько долго.`, len(pr.Data))))
+			// 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, fmt.Sprintf(`Всего найдено записей %v.
+			// Запускаю парсинг по всем карточкам. Это будет несколько долго.`, len(pr.Data))))
 
-			for index := range pr.Data {
-				fmt.Println("Парсинг каждой карточки", index+1, "из", len(pr.Data))
-				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Парсинг каждой карточки "+strconv.Itoa(index+1)+" из "+strconv.Itoa(len(pr.Data))))
-				pr.Data[index].Card, _ = core.ParseCard(pr.Data[index].UrlNumber)
-				time.Sleep(time.Second)
-			}
+			// for index := range pr.Data {
+			// 	fmt.Println("Парсинг каждой карточки", index+1, "из", len(pr.Data))
+			// 	bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Парсинг каждой карточки "+strconv.Itoa(index+1)+" из "+strconv.Itoa(len(pr.Data))))
+			// 	pr.Data[index].Card, _ = core.ParseCard(pr.Data[index].UrlNumber)
+			// }
 
 			// Сохраняем и отравляем ему данные
 			filename, ErrorSave := saveXlsx(pr)
@@ -106,6 +113,13 @@ func Start() {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, ErrorSave.Error()))
 				continue
 			}
+
+			// Отправить все ссылки
+			var StrLinks string
+			for IndexLink, ValueLink := range pr.Data {
+				StrLinks += strconv.Itoa(IndexLink) + ". " + ValueLink.UrlNumber + "\n"
+			}
+			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Найденные ссылки судебных дел:\n"+StrLinks))
 
 			// отправляем файл
 			file := tgbotapi.FilePath(filename)
@@ -124,16 +138,17 @@ func Start() {
 1. [ИНН или компания]; [сторона( "0" - Истец, "1" - Ответчик,"2" - Третье лицо, "3" - Иное лицо)]
 2. [судья]; [инстанция]
 3. [номер дела]
-4. [Дата регистрации С]
-5. [Дата регистрации ДО]
-6. [Параметр поиска("a" - Административные,"c" - Гражданские, "b" - Банкротные, "o" - Найти обычным поиском)]`))
+4. [суд]
+5. [Дата регистрации С]
+6. [Дата регистрации ДО]
+7. [Параметр поиска("a" - Административные,"c" - Гражданские, "b" - Банкротные, "o" - Найти обычным поиском)]`))
 
 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, `1. ООО М4 Б2Б МАРКЕТПЛЕЙС; 0
 2. Снегур А. А.; Суд по интеллектуальным правам
 3. СИП-344/2023
-4. 14.04.2023
 5. 14.04.2023
-6. c`))
+6. 14.04.2023
+7. c`))
 
 			bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, `1. 7714030726; 1`))
 		default:

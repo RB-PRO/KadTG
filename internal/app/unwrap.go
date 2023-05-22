@@ -1,6 +1,7 @@
 package app
 
 import (
+	"errors"
 	"strings"
 	"time"
 
@@ -20,6 +21,9 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		if strings.Contains(f, "1") {
 			str = strings.ReplaceAll(str, "1. ", "")
 			strss := strings.Split(str, ";")
+			if len(strss) != 2 {
+				return req, errors.New("unwrap: Неправильно задано поле 'Участник дела'. Воспользуйтесь командой /example для просмотра примера")
+			}
 			req.Part = append(req.Part, KadArbitr.Participant{
 				Value:    strings.TrimSpace(strss[0]),
 				Settings: strings.TrimSpace(strss[1]),
@@ -30,6 +34,9 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 		if strings.Contains(f, "2") {
 			str = strings.ReplaceAll(str, "2. ", "")
 			strss := strings.Split(str, ";")
+			if len(strss) != 2 {
+				return req, errors.New("unwrap: Неправильно задано поле 'Судья'. Воспользуйтесь командой /example для просмотра примера")
+			}
 			req.Judg = append(req.Judg, KadArbitr.Judgs{
 				Value:    strings.TrimSpace(strss[0]),
 				Instance: strings.TrimSpace(strss[1]),
@@ -42,25 +49,31 @@ func unwrap(input string) (req KadArbitr.Request, err error) {
 			req.Number = append(req.Number, strings.TrimSpace(str))
 		}
 
-		// Дата регистрации С
+		// Суд
 		if strings.Contains(f, "4") {
 			str = strings.ReplaceAll(str, "4. ", "")
+			req.Court = append(req.Number, strings.TrimSpace(str))
+		}
+
+		// Дата регистрации С
+		if strings.Contains(f, "5") {
+			str = strings.ReplaceAll(str, "5. ", "")
 			if times, err := time.Parse("02.01.2006", strings.TrimSpace(str)); err == nil {
 				req.DateFrom = times
 			}
 		}
 
 		// Дата регистрации ДО
-		if strings.Contains(f, "5") {
-			str = strings.ReplaceAll(str, "5. ", "")
+		if strings.Contains(f, "6") {
+			str = strings.ReplaceAll(str, "6. ", "")
 			if times, err := time.Parse("02.01.2006", strings.TrimSpace(str)); err == nil {
 				req.DateTo = times
 			}
 		}
 
 		// Параметр поиска
-		if strings.Contains(f, "6") {
-			str = strings.ReplaceAll(str, "6. ", "")
+		if strings.Contains(f, "7") {
+			str = strings.ReplaceAll(str, "7. ", "")
 			req.SearchCases = strings.TrimSpace(str)
 			switch strings.TrimSpace(str) {
 			case "a":

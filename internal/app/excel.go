@@ -1,7 +1,9 @@
 package app
 
 import (
+	"fmt"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/RB-PRO/KadTG/pkg/KadArbitr"
@@ -31,6 +33,10 @@ func saveXlsx(pr KadArbitr.Parse) (filename string, err error) {
 
 // Сохранить результаты по Avtoto
 func save(f *excelize.File, data []KadArbitr.Data) {
+	style, err := f.NewStyle(&excelize.Style{Fill: excelize.Fill{Type: "pattern", Pattern: 1, Color: []string{"00FF00"}}}) // `{"fill":{"type":"pattern","color":["#00FF00"],"pattern":1}}`
+	if err != nil {
+		fmt.Println(err)
+	}
 	ssheet := "main"
 	f.SetCellValue(ssheet, "A1", "Номер дела")
 	f.SetCellValue(ssheet, "B1", "Ссылка на дело")
@@ -68,6 +74,13 @@ func save(f *excelize.File, data []KadArbitr.Data) {
 		if len(value.Card.Slips) != 0 {
 			f.SetCellValue(ssheet, "P"+strconv.Itoa(index+2), value.Card.Slips[0].Main.FileName)
 			f.SetCellValue(ssheet, "Q"+strconv.Itoa(index+2), value.Card.Slips[0].Main.FileLink)
+		}
+
+		if len(strings.TrimSpace(value.Plaintiff.INN)) == 10 {
+			f.SetCellStyle(ssheet, "H"+strconv.Itoa(index+2), "H"+strconv.Itoa(index+2), style)
+		}
+		if len(strings.TrimSpace(value.Respondent.INN)) == 10 {
+			f.SetCellStyle(ssheet, "L"+strconv.Itoa(index+2), "L"+strconv.Itoa(index+2), style)
 		}
 	}
 }
