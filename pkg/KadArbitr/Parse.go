@@ -105,13 +105,13 @@ func (core *CoreReq) Parse() ([]Data, error) {
 		}
 
 		// * Инстанция *
-		Court, _ := TD[1].QuerySelector("div div:last-of-type")
+		Court, _ := TD[1].QuerySelector("div div:last-child")
 		if Court != nil {
 			// Если такой элемент существует
 			if IsVisible, ErrorVisible := Court.IsVisible(); IsVisible && ErrorVisible == nil {
 				// Берём текст из тега
 				Instance, ErrorInnerCourt := Court.InnerText()
-				if ErrorInnerCourt != nil {
+				if ErrorInnerCourt == nil {
 					AppendData.Instance = Instance
 				}
 			}

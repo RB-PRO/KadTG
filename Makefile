@@ -14,5 +14,5 @@ push-car:
 	set GOOS=linux
 	set CGO_ENABLED=0
 	go env GOOS GOARCH CGO_ENABLED
-	go build -o main ./cmd/main/main.go
+	go build cmd/main/main.go
 	scp main token root@194.87.107.129:go/KadTG/

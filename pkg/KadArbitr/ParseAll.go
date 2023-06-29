@@ -1,6 +1,9 @@
 package KadArbitr
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 // Парсинг всех страниц документа с учётом колличества страниц
 // На вход структуру запроса, а на выходе массив полученных данных
@@ -65,6 +68,7 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 				fmt.Println("ParseAll:", ErrorNext)
 				//return Parse{}, ErrorNext
 			}
+			time.Sleep(time.Second)
 
 			// Парсим страницы
 			data, ErrorAll = core.Parse()
@@ -74,6 +78,7 @@ func (core *CoreReq) ParseAll() (pr Parse, ErrorAll error) {
 
 			// Добавляем в готвоый массив
 			pr.Data = append(pr.Data, data...)
+
 		}
 	}
 

@@ -39,6 +39,8 @@ func TestFillReqest(t *testing.T) {
 
 	data, _ := core.Parse()
 	fmt.Println("len", len(data))
+	fmt.Printf("%+v\n", data[0])
+	fmt.Printf("суд %+v\n", data[0].Instance)
 
 	core.Screen("screens/Req4.jpg")
 }

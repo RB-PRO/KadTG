@@ -38,6 +38,8 @@ func Start() {
 
 		// Игнорируем НЕкоманды
 		if !update.Message.IsCommand() {
+			// if update.Message.Chat.UserName == "RB_PRO" || update.Message.Chat.UserName == "derley11" || update.Message.Chat.UserName == "B2bTaxconsulting" {
+
 			// Проверка наличия текста в сообщении
 			if update.Message.Text == "" {
 				bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Не вижу текста.\nНужно отправить фотографию вместе с текстом."))
@@ -128,7 +130,9 @@ func Start() {
 			core.Stop()
 
 			fmt.Println(len(pr.Data))
-
+			// } else {
+			// 	bot.Send(tgbotapi.NewMessage(update.Message.Chat.ID, "Доступ запрешён.\nРазработчик @RB_PRO"))
+			// }
 			continue
 		}
 
