@@ -30,7 +30,7 @@ func TestNextPage(t *testing.T) {
 		t.Error(ErrorCore)
 	}
 	core.Screen("screens/Next1.jpg")
-	req := Req2() // Создаём запрос на поиск
+	req := Req5() // Создаём запрос на поиск
 	// Заполнение формы поиска
 	ErrorReq := core.FillReqestOne(req)
 	if ErrorReq != nil {
@@ -63,5 +63,14 @@ func Req2() Request {
 				Settings: ParticipantAll, // Категория истца
 			},
 		},
+	}
+}
+
+// Получить тестовый запрос 5
+func Req5() Request {
+	return Request{
+		DateFrom: time.Date(2023, time.July, 14, 0, 0, 0, 0, time.Local),
+		DateTo:   time.Date(2023, time.August, 14, 0, 0, 0, 0, time.Local),
+		Court:    []string{"АС Курской области"},
 	}
 }

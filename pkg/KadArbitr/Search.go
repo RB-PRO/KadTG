@@ -36,15 +36,15 @@ func (core *CoreReq) Search(req Request) (ErrorClick error) {
 	// будь то обычный поиск через "Найти" или поиск в молификации гражданских, банкротств или административных делах.
 	if req.SearchCases == ModeSearch {
 		// Если общий запрос через кнопку "найти"
-		// ErrorClick = core.page.Press(`input[placeholder="фамилия судьи"]`, "Enter")
-		// if ErrorClick != nil {
-		// 	return ErrorClick
-		// }
-		ErrorClick = core.page.Click(`button[alt=Найти]`, playwright.PageClickOptions{
-			Force:   playwright.Bool(true),
-			Delay:   playwright.Float(100),
-			Timeout: playwright.Float(5000),
-		})
+		ErrorClick = core.page.Press(`input[placeholder="фамилия судьи"]`, "Enter")
+		if ErrorClick != nil {
+			return ErrorClick
+		}
+		// ErrorClick = core.page.Click(`button[alt=Найти]`, playwright.PageClickOptions{
+		// 	Force:   playwright.Bool(true),
+		// 	Delay:   playwright.Float(100),
+		// 	Timeout: playwright.Float(5000),
+		// })
 		if ErrorClick != nil {
 			return ErrorClick
 		}
